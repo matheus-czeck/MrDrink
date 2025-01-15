@@ -1,13 +1,25 @@
 import { Routes } from '@angular/router';
-import {LoginComponent} from './modules/login/login.component'
-export const routes: Routes = [
-{
-    path:"login", component: LoginComponent
-},
-{
- 
-    path:"**", redirectTo: "login"
 
-}
+
+export const routes: Routes = [
+    {
+        path: '', redirectTo: "/login",
+        pathMatch: "full"
+    },
+{
+    path:"login", 
+    loadComponent: ()=>
+        import('./modules/login/login.component').then(
+            (m)=>m.LoginComponent
+        )
+        
+    },
+    {
+        path: 'dashboard', 
+        loadComponent:()=>
+            import('./modules/dashboard/dashboard.component').then(
+                (m)=>m.DashboardComponent
+            )
+    }
 
 ];

@@ -2,18 +2,18 @@
 <div class="formContainer">
   <span class="image-mrdrink"></span>
 
-<form nz-form [nzLayout]="'inline'">
+<form nz-form [nzLayout]="'inline'" (ngSubmit)="onLogin()">
     <nz-form-item>
       <nz-form-control nzErrorTip="Please input your username!">
         <nz-input-group nzPrefixIcon="user">
-          <input nz-input placeholder="username" />
+          <input nz-input placeholder="username" [(ngModel)]="userName" name="userName" id="userName" required />
         </nz-input-group>
       </nz-form-control>
     </nz-form-item>
     <nz-form-item>
       <nz-form-control nzErrorTip="Please input your Password!">
         <nz-input-group nzPrefixIcon="lock">
-          <input nz-input type="password" placeholder="Password" />
+          <input nz-input type="password" placeholder="Password" id="password" [(ngModel)]="password" name="password" required>
         </nz-input-group>
       </nz-form-control>
     </nz-form-item>
