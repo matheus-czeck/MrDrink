@@ -29,7 +29,7 @@ export class LoginComponent{
   constructor(private authService: AuthService, private router: Router) {}
 
   onLogin(): void {
-    this.authService.login(this.userName, this.password).subscribe({
+   this.authService.login(this.userName, this.password).subscribe({
       next:(response) =>{
         localStorage.setItem("token", response.token);
         this.router.navigate(['/dashboard'])

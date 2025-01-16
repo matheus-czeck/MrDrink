@@ -1,0 +1,13 @@
+{
+    "compilerOptions": {
+      "target": "ES6",                 // Define o ECMAScript para o qual o TypeScript será compilado
+      "module": "commonjs",             // Define o tipo de módulo para CommonJS
+      "strict": true,                   // Ativa opções de validação estritas
+      "esModuleInterop": true,          // Permite a interoperabilidade com módulos do ES
+      "skipLibCheck": true              // Ignora verificações de bibliotecas padrão do TypeScript
+    },
+    "include": [
+      "src/**/*.ts"                     // Inclui todos os arquivos TypeScript no diretório src
+    ]
+  }
+  
