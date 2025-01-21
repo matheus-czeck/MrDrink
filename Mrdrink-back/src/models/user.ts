@@ -25,7 +25,6 @@ User.init({
         },
         createdAt: {
             type: DataTypes.DATE,
-            allowNull: true
 
         }
 

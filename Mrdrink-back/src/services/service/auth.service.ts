@@ -18,9 +18,18 @@ export const loginUser = async (userName: string, password: string) => {
         throw new Error("Senha incorreta");
 
     }
+    
+
+
+    const nameInArray = [userName]
+
+    nameInArray.slice(2)
+    
+
 
     const token = jwt.sign({ id: user.id, userName: user.userName}, SECRET_KEY, { expiresIn: "1h"});
     console.log("Token gerado: ", token)
     return {token, user}
+    
 
 }
