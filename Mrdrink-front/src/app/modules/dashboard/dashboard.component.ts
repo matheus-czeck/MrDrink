@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ElementRef, Renderer2, ViewChild } from '@angular/core';
 
 import { NzButtonModule } from 'ng-zorro-antd/button';
 import { NzIconModule } from 'ng-zorro-antd/icon';
@@ -13,12 +13,20 @@ import { NzToolTipModule } from 'ng-zorro-antd/tooltip';
 })
 export class DashboardComponent {
 
-  PeopleName: string = "Gustavo"
-  isCollapsed = false;
+  userName: string = "Gustavo"
+   @ViewChild(
+    'enable', { static: false}) enable!: ElementRef;
+    isVisible: Boolean = true;
 
-  toggleCollapsed(): void {
-    this.isCollapsed = !this.isCollapsed;
+    constructor(private renderer: Renderer2) {}
+
+  openNavMenu(){
+    this.isVisible = !this.isVisible;
+    const visibility = this.isVisible ? 'visible' : "hidden"
+    this.renderer.setStyle(this.enable.nativeElement, "visibility", visibility)
+    console.log("clicou")
+
   }
+  
+
 }
-
-
