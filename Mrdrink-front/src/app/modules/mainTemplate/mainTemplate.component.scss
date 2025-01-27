@@ -1,9 +1,11 @@
 .main-container {
   display: flex;
-  width: 100vw;
+  width: 100%;
   height: 100vh;
+  overflow: hidden;
+  box-sizing: border-box;
   background-color: black;
- transform-origin: width 1s;
+ 
 
 }
 
@@ -28,7 +30,7 @@ section {
     align-items: center;
     justify-content: space-between;
     position: relative;
-    padding: 1.5rem .5rem;
+    padding: 1rem .5rem;
 
 
 
@@ -37,6 +39,8 @@ section {
 
 
     .burger-btn {
+      display: flex;
+      align-self: flex-start;
       width: 25px;
       height: 25px;
 
@@ -60,22 +64,8 @@ section {
     }
 
 
-    .welcome {
-      display: flex;
-      position: absolute;
-      left: 50%;
-      transform: translateX(-50%);
-      align-self: center;
-
-    }
-
-    .welcome h1 {
-      color: white;
-      text-align: center;
-      padding-top: 1rem;
-      font-weight: bold;
-      font-size: x-large;
-
+    .content {
+      flex-grow: 1;
     }
 
   }
@@ -84,17 +74,21 @@ section {
 nav {
   background-color: black;
   border-right: 1px solid red;
-  width: 250px;
+  width: 200px;
   height: 100vh;
   border-radius: 0px 15px 15px 0;
-  visibility: hidden;
   position: absolute;
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  visibility: hidden;
   z-index: 2;
-  transition: .5s;
+  
 
 
   .close-btn {
     display: flex;
+    align-self:flex-end ;
     padding: .5rem;
     justify-content: end;
 
@@ -123,11 +117,12 @@ nav {
   }
 
   .logochapeu {
+    display: flex;
     background-image: url(../../../assets/image/mr-drink-chapeu.png);
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
-    height: 100px;
+    height: 110px;
   }
 
   .links-options {
