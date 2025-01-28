@@ -1,0 +1,22 @@
+
+.welcome h1 {
+  color: white;
+  text-align: center;
+  font-weight: bold;
+  font-size: x-large;
+
+}
+
+.content{
+  display: flex;
+  justify-content: center;
+  max-width: 100%;
+  width: 100%;
+  overflow: auto;
+  flex-wrap: wrap;
+  box-sizing: border-box;
+}
+h1,h2{
+  color: white;
+}
+

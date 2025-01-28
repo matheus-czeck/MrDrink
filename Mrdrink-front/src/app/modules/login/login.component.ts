@@ -3,8 +3,10 @@ import { RouterModule, Router } from '@angular/router';
 import { NzButtonModule } from 'ng-zorro-antd/button';
 import { NzFormModule } from 'ng-zorro-antd/form';
 import { NzInputModule } from 'ng-zorro-antd/input';
-import { FormBuilder, FormGroup, FormsModule, NonNullableFormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
+import {  FormsModule } from '@angular/forms';
 import { AuthService } from '../../services/auth.service';
+import { NZ_ICONS, NzIconModule } from 'ng-zorro-antd/icon';
+import {UserOutline, LockOutline} from "@ant-design/icons-angular/icons"
 
 
 
@@ -15,8 +17,18 @@ import { AuthService } from '../../services/auth.service';
     NzButtonModule,
     NzFormModule,
     NzInputModule,
-    FormsModule
+    FormsModule,
+    NzIconModule
 
+
+  ],
+  providers:[
+    {
+      provide:NZ_ICONS,
+      useValue:[UserOutline, LockOutline]
+
+
+    },
 
   ],
   templateUrl: './login.component.html',
