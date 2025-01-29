@@ -1,5 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component, ElementRef, Renderer2, ViewChild } from '@angular/core';
+import { RouterModule } from '@angular/router';
 
 import { NzButtonModule } from 'ng-zorro-antd/button';
 import { NzIconModule } from 'ng-zorro-antd/icon';
@@ -9,7 +10,7 @@ import { NzToolTipModule } from 'ng-zorro-antd/tooltip';
 @Component({
   standalone: true,
   selector: 'app-mainTemplate',
-  imports: [NzToolTipModule, NzMenuModule , NzIconModule , NzButtonModule, CommonModule],
+  imports: [NzToolTipModule, NzMenuModule , NzIconModule , NzButtonModule, CommonModule, RouterModule],
   templateUrl: './mainTemplate.component.html',
   styleUrl: './mainTemplate.component.scss'
 })
