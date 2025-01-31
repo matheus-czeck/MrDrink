@@ -1,3 +1,59 @@
-input {
-    color: white;
+.options-event   {
+ display: flex;
+ flex-wrap: wrap !important;
+ overflow-x: hidden;
+ flex-direction: row;
+ margin-top: 3rem;
+ gap: 10px;
+ max-width: 1000px;
+ background-color: rgba(255, 255, 255, 0.514);
+ padding: 1rem;
+ border-radius: 10px;
+
+
+
 }
+.options-event > * { 
+    min-width: 150px; 
+    flex: 1; 
+    max-width: 200px; 
+}
+
+.input-group span{
+    height: 58px;
+}
+.form-select, .dropdown-toggle{
+    height: 58px;
+}
+
+
+button{
+    background-color: white;
+    color: black;
+}
+button:hover,
+input:hover{
+    background-color: rgba(255, 255, 255, 0.767);
+    color: black;
+}
+
+.btn-outline-primary {
+    border-radius: 0 10px 10px 0;
+    border-color: transparent;
+}
+
+select:hover {
+    background-color: rgba(255, 255, 255, 0.767);
+}
+
+.d-grid{
+    display: flex;
+}
+
+
+.calendar{
+    margin-top: 4rem;
+    color: white;
+
+}
+

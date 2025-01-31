@@ -21,3 +21,17 @@ h1,h2{
   color: white;
 }
 
+*{
+  ::-webkit-scrollbar-track {
+    background-color: #000000;
+}
+::-webkit-scrollbar {
+    width: 6px;
+    background: #F4F4F4;
+}
+::-webkit-scrollbar-thumb {
+    background: black;
+    border: 1px solid red;
+}
+}
+
