@@ -18,7 +18,7 @@
         
     div{
         background-color: rgba(255, 255, 255, 0.89);
-        padding: .5rem;
+        padding: 0.5rem 1rem;
         max-width: 25vw;
         min-width:  120px;
         min-height: 120px;
@@ -33,7 +33,6 @@
         flex-direction: column;
 
         h3{
-          font-weight: bold;
           margin-top: .5rem;
 
         }

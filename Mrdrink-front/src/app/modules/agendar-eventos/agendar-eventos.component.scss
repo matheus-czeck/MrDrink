@@ -5,7 +5,6 @@
  flex-direction: row;
  margin-top: 3rem;
  gap: 10px;
- max-width: 1000px;
  background-color: rgba(255, 255, 255, 0.514);
  padding: 1rem;
  border-radius: 10px;
@@ -16,7 +15,10 @@
 .options-event > * { 
     min-width: 150px; 
     flex: 1; 
-    max-width: 200px; 
+
+}
+.form-control{
+    padding: 1rem;
 }
 
 .input-group span{
@@ -56,4 +58,56 @@ select:hover {
     color: white;
 
 }
+
+
+
+
+.option-calendar{
+    margin-top: 5rem;
+    
+    h2{
+        text-align: center;
+        color: white;
+        text-transform: uppercase;
+        font-weight: bold;
+        font-size: xx-large;
+    }
+
+}
+.calendar-container {
+    background-color: rgba(255, 255, 255, 0.514);
+    
+    padding: 2rem .5rem;
+    flex-wrap: wrap;
+    display: flex;
+    justify-content: space-around;
+    border-radius: 10px;
+    gap: .5rem;
+  }
+  
+  .month {
+    padding: 10px;
+    border: 1px solid black;
+    background-color: rgba(255, 255, 255, 0.822);
+    border-radius: 8px;
+    text-align: center;
+  }
+  
+  .days-grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    row-gap: 0px;
+
+    span{
+        border: 1px solid rgb(167, 167, 167);
+        padding: 4px;
+        
+
+    }
+  }
+  
+  .highlighted {
+    background-color: rgba(255, 0, 0, 0.452);
+    
+  }
 
