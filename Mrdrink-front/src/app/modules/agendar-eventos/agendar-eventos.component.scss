@@ -105,6 +105,17 @@ select:hover {
 
     }
   }
+
+  .week-days-grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    font-weight: bold;
+    margin-bottom: 5px;
+  }
+  
+  .week-day {
+    text-align: center;
+  }
   
   .highlighted {
     background-color: rgba(255, 0, 0, 0.452);
