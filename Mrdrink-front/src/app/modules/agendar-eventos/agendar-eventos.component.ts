@@ -2,16 +2,31 @@ import { Component } from '@angular/core';
 import { MainTemplate } from "../mainTemplate/mainTemplate.component";
 import { MatDatepickerModule } from '@angular/material/datepicker'
 import { CommonModule } from '@angular/common';
+import { ReactiveFormsModule, FormsModule, FormGroup, FormControl } from '@angular/forms';
 
 
 @Component({
   selector: 'app-agendar-eventos',
-  imports: [MainTemplate, MatDatepickerModule, CommonModule],
+  imports: [MainTemplate, MatDatepickerModule, CommonModule, ReactiveFormsModule],
   templateUrl: './agendar-eventos.component.html',
 
   styleUrl: './agendar-eventos.component.scss'
 })
 export class AgendarEventosComponent {
+  
+  scheduleEvent = new FormGroup ({
+    nameCouple: new FormControl(""),
+    deteEvent: new FormControl(""),
+    amountGuests: new FormControl(""),
+    value: new FormControl(""),
+
+
+  })
+
+ 
+  
+
+
   months = [
     'Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho',
     'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'
@@ -40,4 +55,6 @@ export class AgendarEventosComponent {
   isHighlighted(day: number, monthIndex: number): boolean {
     return this.highlightedDates.some(h => h.day === day && h.month === monthIndex + 1);
   }
+
+  
 }
