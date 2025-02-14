@@ -34,9 +34,9 @@ export class AgendarEventosComponent {
 
     teamList = [
       {name:"Tazky" ,id:"0"},
-      {name:"Tazky" ,id:"0"},
-      {name:"Tazky" ,id:"0"},
-      {name:"Tazky" ,id:"0"},
+      {name:"Murilo" ,id:"0"},
+      {name:"Mt" ,id:"0"},
+      {name:"Th" ,id:"0"},
 
     ]
 
@@ -64,7 +64,7 @@ export class AgendarEventosComponent {
 
   }
 
-  onteamCheckboxChange(event: Event, teamName: string){
+  onTeamCheckboxChange(event: Event, teamName: string){
     const checkbox = event.target as HTMLInputElement
     const selecedTeams = this.scheduleEvent.get("selectedTeams") as FormArray
 
