@@ -2,7 +2,9 @@ import { Component } from '@angular/core';
 import { MainTemplate } from "../mainTemplate/mainTemplate.component";
 import { MatDatepickerModule } from '@angular/material/datepicker'
 import { CommonModule } from '@angular/common';
-import { ReactiveFormsModule, FormsModule, FormGroup, FormControl } from '@angular/forms';
+import { ReactiveFormsModule, FormsModule, FormGroup, FormControl, FormArray } from '@angular/forms';
+import { EventService } from '../../services/serviceSchedule/event.service';
+import { response } from 'express';
 
 
 @Component({
@@ -16,12 +18,67 @@ export class AgendarEventosComponent {
   
   scheduleEvent = new FormGroup ({
     nameCouple: new FormControl(""),
-    deteEvent: new FormControl(""),
+    dateEvent: new FormControl(""),
     amountGuests: new FormControl(""),
+    place: new FormControl(""),
     value: new FormControl(""),
-
-
+    selectedTeams: new FormArray([]),
   })
+    menuList = [ 
+      {name:"Special" , id:"0"},
+      {name:"Special Plus" , id:"0"},
+      {name:"Premium" , id:"0"},
+      {name:"Premium Plus" , id:"0"},
+
+    ]
+
+    teamList = [
+      {name:"Tazky" ,id:"0"},
+      {name:"Tazky" ,id:"0"},
+      {name:"Tazky" ,id:"0"},
+      {name:"Tazky" ,id:"0"},
+
+    ]
+
+    ngOnInit(){
+
+    }
+
+
+  constructor(private eventService: EventService){}
+
+   confirmEvent () {
+    const eventData = this.scheduleEvent.value
+
+    this.eventService.createEvent(eventData).subscribe({
+      next: (response)=>{
+        console.log("Evento confirmado com sucesso", response);
+      },
+      error: (error)=>{
+        console.error("Erro ao confirmar evento:", error)
+
+      }
+    })
+
+    console.log('Dados do form', this.scheduleEvent.value)
+
+  }
+
+  onteamCheckboxChange(event: Event, teamName: string){
+    const checkbox = event.target as HTMLInputElement
+    const selecedTeams = this.scheduleEvent.get("selectedTeams") as FormArray
+
+    if(checkbox.checked){
+      selecedTeams.push(new FormControl(teamName))
+    } else {
+      const index = selecedTeams.controls.findIndex(control => control.value === teamName)
+      if (index !== -1){
+        selecedTeams.removeAt(index)
+
+      }
+    }
+
+  }
 
  
   
