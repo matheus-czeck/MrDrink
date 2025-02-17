@@ -4,16 +4,17 @@ import cors from 'cors';
 import authRoutes from './routes/auth.routes';
 import sequelize from './config/dbMrdrink';
 import dotenv from 'dotenv';
+import scheduleEvent from "./routes/scheduleEvent.routes"
 
 dotenv.config();
 
 
 const app = express();
 app.use(cors());
-app.use(bodyParser.json());
+app.use(express.json());
 
 app.use('/auth', authRoutes);
-app.use(express.json())
+app.use("/events", scheduleEvent)
 
 sequelize
  .sync({alter: true})

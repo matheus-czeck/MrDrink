@@ -41,7 +41,7 @@ confimedEvent.init(
         }
     }, 
     {
-    sequelize,
+        Sequelize,
         modelName: "confirmedEvent",
         tableName: "confirmed_events",
         timestamps: true,
