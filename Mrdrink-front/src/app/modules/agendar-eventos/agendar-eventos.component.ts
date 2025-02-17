@@ -22,6 +22,7 @@ export class AgendarEventosComponent {
     amountGuests: new FormControl(""),
     place: new FormControl(""),
     value: new FormControl(""),
+    menu: new FormControl(""),
     selectedTeams: new FormArray([]),
   })
     menuList = [ 

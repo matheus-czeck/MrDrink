@@ -70,10 +70,9 @@
                         <path
                             d="M9.5 13a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0m0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0m0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0" />
                     </svg></span>
-                <select class="form-select" aria-label="Cardápio">
-                    <option selected>Cardápio</option>
-                    <option value="1" *NgFor="let ">One</option>
-                    
+                <select class="form-select" aria-label="Cardápio" >
+                    <option selected disabled>Cardápio</option>
+                    <option [value]="menuList" *ngFor="let menu of menuList; let i = index">{{menu.name}}</option>
                 </select>
             </div>
             <div class="input-group mb-3">
