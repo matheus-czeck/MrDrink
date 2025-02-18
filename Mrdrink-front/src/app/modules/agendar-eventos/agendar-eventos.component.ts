@@ -50,6 +50,7 @@ export class AgendarEventosComponent {
 
    confirmEvent () {
     const eventData = this.scheduleEvent.value
+    console.log(eventData)
 
     this.eventService.createEvent(eventData).subscribe({
       next: (response)=>{
@@ -60,8 +61,6 @@ export class AgendarEventosComponent {
 
       }
     })
-
-    console.log('Dados do form', this.scheduleEvent.value)
 
   }
 
