@@ -1,5 +1,5 @@
 import { DataTypes, Model } from "sequelize";
-import { sequelize } from "../config/dbMrdrink"
+import  sequelize  from "../config/dbMrdrink"
 
 export class confimedEvent extends Model {
 }
@@ -41,7 +41,7 @@ confimedEvent.init(
         }
     }, 
     {
-        Sequelize,
+        sequelize,
         modelName: "confirmedEvent",
         tableName: "confirmed_events",
         timestamps: true,
