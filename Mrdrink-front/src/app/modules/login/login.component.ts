@@ -50,7 +50,7 @@ export class LoginComponent {
 
     if (match) {
       const role = match[1]
-
+      
       if (role === "admin") {
 
         this.authService.login(this.userName, this.password).subscribe({
