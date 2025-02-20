@@ -16,20 +16,20 @@ import { response } from 'express';
 })
 export class AgendarEventosComponent {
   
-  scheduleEvent = new FormGroup ({
+  infoEvents = new FormGroup ({
     nameCouple: new FormControl(""),
-    dateEvent: new FormControl(""),
-    amountGuests: new FormControl(""),
+    dateEvent: new FormControl(null),
+    amountGuests: new FormControl(null),
     place: new FormControl(""),
-    value: new FormControl(""),
-    menu: new FormControl(""),
+    value: new FormControl(null),
+    menu: new FormControl(null),
     selectedTeams: new FormArray([]),
   })
     menuList = [ 
-      {name:"Special" , id:"0"},
-      {name:"Special Plus" , id:"0"},
-      {name:"Premium" , id:"0"},
-      {name:"Premium Plus" , id:"0"},
+      {name:"Special" },
+      {name:"Special Plus"},
+      {name:"Premium" },
+      {name:"Premium Plus"},
 
     ]
 
@@ -49,7 +49,7 @@ export class AgendarEventosComponent {
   constructor(private eventService: EventService){}
 
    confirmEvent () {
-    const eventData = this.scheduleEvent.value
+    const eventData = this.infoEvents.value
     console.log(eventData)
 
     this.eventService.createEvent(eventData).subscribe({
@@ -64,9 +64,15 @@ export class AgendarEventosComponent {
 
   }
 
+  scheduleEvent() {
+    const eventData = this.infoEvents.value
+    console.log(eventData)
+
+  }
+
   onTeamCheckboxChange(event: Event, teamName: string){
     const checkbox = event.target as HTMLInputElement
-    const selecedTeams = this.scheduleEvent.get("selectedTeams") as FormArray
+    const selecedTeams = this.infoEvents.get("selectedTeams") as FormArray
 
     if(checkbox.checked){
       selecedTeams.push(new FormControl(teamName))
