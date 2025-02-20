@@ -3,8 +3,11 @@ import { MainTemplate } from "../mainTemplate/mainTemplate.component";
 import { MatDatepickerModule } from '@angular/material/datepicker'
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule, FormsModule, FormGroup, FormControl, FormArray } from '@angular/forms';
-import { EventService } from '../../services/serviceSchedule/event.service';
-import { response } from 'express';
+import { EventService } from '../../services/serviceConfirm/event.service';
+import { GetInformations } from '../../services/serviceConfirm/getInformations.service';
+import { catchError } from 'rxjs';
+import { of } from 'rxjs';
+
 
 
 @Component({
@@ -15,6 +18,8 @@ import { response } from 'express';
   styleUrl: './agendar-eventos.component.scss'
 })
 export class AgendarEventosComponent {
+
+  constructor(private eventService: EventService, private getInformations: GetInformations){}
   
   infoEvents = new FormGroup ({
     nameCouple: new FormControl(""),
@@ -42,11 +47,22 @@ export class AgendarEventosComponent {
     ]
 
     ngOnInit(){
+      this.getInformations.getEvents().pipe(
+        catchError(error => {
+          console.log("Erro ao carregar eventos", error);
+          return of([]);
+        })
+      ).subscribe(
+        (data)=>{
+          this.highlightedDates = data.eventData
+          console.log(this.highlightedDates)
+        }
+      )
 
     }
 
 
-  constructor(private eventService: EventService){}
+  
 
    confirmEvent () {
     const eventData = this.infoEvents.value
@@ -100,10 +116,7 @@ export class AgendarEventosComponent {
 
 
   highlightedDates = [
-    { month: 1, day: 10 },
-    { month: 1, day: 15 },
-    { month: 1, day: 20 },
-    { month: 3, day: 1 }
+    {day:10, month:9}
   ];
 
   getDaysInMonth(monthIndex: number): number[] {

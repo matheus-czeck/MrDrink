@@ -4,7 +4,8 @@ import cors from 'cors';
 import authRoutes from './routes/auth.routes';
 import sequelize from './config/dbMrdrink';
 import dotenv from 'dotenv';
-import scheduleEvent from "./routes/scheduleEvent.routes"
+import scheduleEvent from "./routes/confirmEvents"
+import GetInformations from "./routes/GetInformations.routes"
 
 dotenv.config();
 
@@ -23,6 +24,7 @@ next();
 
 app.use('/auth', authRoutes);
 app.use("/events", scheduleEvent)
+app.use("/eventos", GetInformations);
 
 sequelize
  .sync({alter: true})
