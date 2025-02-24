@@ -1,8 +1,9 @@
-import { response, Router } from "express";
-import { Request, Response } from "express";
-import router from "./auth.routes";
-const eventsController = require( '../services/service/GetInformations.service')
+import { Router } from "express";
+import { getInformations } from "../services/service/GetInformations.service";
+import express from "express"
 
-router.get('/eventos', eventsController.get);
+const router = express.Router()
+
+router.get('/', getInformations);
 
 export default router;

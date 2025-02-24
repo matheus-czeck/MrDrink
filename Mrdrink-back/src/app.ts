@@ -5,7 +5,8 @@ import authRoutes from './routes/auth.routes';
 import sequelize from './config/dbMrdrink';
 import dotenv from 'dotenv';
 import scheduleEvent from "./routes/confirmEvents"
-import GetInformations from "./routes/GetInformations.routes"
+import getInformations from "./routes/GetInformations.routes"
+
 
 dotenv.config();
 
@@ -24,7 +25,7 @@ next();
 
 app.use('/auth', authRoutes);
 app.use("/events", scheduleEvent)
-app.use("/eventos", GetInformations);
+app.use("/eventos", getInformations );
 
 sequelize
  .sync({alter: true})

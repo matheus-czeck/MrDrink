@@ -5,17 +5,16 @@ import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule, FormsModule, FormGroup, FormControl, FormArray } from '@angular/forms';
 import { EventService } from '../../services/serviceConfirm/event.service';
 import { GetInformations } from '../../services/serviceConfirm/getInformations.service';
-import { catchError } from 'rxjs';
-import { of } from 'rxjs';
+
 
 
 
 @Component({
   selector: 'app-agendar-eventos',
+  standalone: true,
   imports: [MainTemplate, MatDatepickerModule, CommonModule, ReactiveFormsModule],
   templateUrl: './agendar-eventos.component.html',
-
-  styleUrl: './agendar-eventos.component.scss'
+  styleUrls: ['./agendar-eventos.component.scss']
 })
 export class AgendarEventosComponent {
 
@@ -46,17 +45,29 @@ export class AgendarEventosComponent {
 
     ]
 
+  
+
     ngOnInit(){
-      this.getInformations.getEvents().pipe(
-        catchError(error => {
+      this.getInformations.getEvents().subscribe(
+        (data)=> {
+          this.highlightedDates = data.map(event => {
+            console.log(event)
+
+            
+            const eventDate = new Date(event.dateEvent)
+            return {
+              day: eventDate.getUTCDate(),
+              month: eventDate.getUTCMonth(),
+
+            }
+          })
+        },
+        (error) =>{
           console.log("Erro ao carregar eventos", error);
-          return of([]);
-        })
-      ).subscribe(
-        (data)=>{
-          this.highlightedDates = data.eventData
-          console.log(this.highlightedDates)
+          this.highlightedDates = []
+
         }
+
       )
 
     }
@@ -115,9 +126,9 @@ export class AgendarEventosComponent {
 
 
 
-  highlightedDates = [
-    {day:10, month:9}
-  ];
+  highlightedDates: any [] = [];
+  
+  
 
   getDaysInMonth(monthIndex: number): number[] {
     const year = new Date().getFullYear();
@@ -129,7 +140,7 @@ export class AgendarEventosComponent {
   }
 
   isHighlighted(day: number, monthIndex: number): boolean {
-    return this.highlightedDates.some(h => h.day === day && h.month === monthIndex + 1);
+    return this.highlightedDates.some(h =>h.day === day && h.month === monthIndex + 1);
   }
 
   
