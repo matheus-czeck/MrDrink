@@ -50,26 +50,13 @@ export class AgendarEventosComponent {
     ngOnInit(){
       this.getInformations.getEvents().subscribe(
         (data)=> {
-          this.highlightedDates = data.map(event => {
-            console.log(event)
-
-            
-            const eventDate = new Date(event.dateEvent)
-            return {
-              day: eventDate.getUTCDate(),
-              month: eventDate.getUTCMonth(),
-
-            }
-          })
+          this.highlightedDates = (Array.isArray(data) ? data : []).map(event =>({
+              day: new Date(event.dateEvent).getUTCDate(),
+              month: new Date(event.dateEvent).getUTCMonth() + 1,
+          }))
         },
-        (error) =>{
-          console.log("Erro ao carregar eventos", error);
-          this.highlightedDates = []
-
-        }
-
+        ()=> (this.highlightedDates = [])
       )
-
     }
 
 
