@@ -12,7 +12,7 @@ import { GetInformations } from '../../services/serviceConfirm/getInformations.s
 @Component({
   selector: 'app-agendar-eventos',
   standalone: true,
-  imports: [MainTemplate, MatDatepickerModule, CommonModule, ReactiveFormsModule],
+  imports: [MainTemplate, FormsModule, MatDatepickerModule, CommonModule, ReactiveFormsModule],
   templateUrl: './agendar-eventos.component.html',
   styleUrls: ['./agendar-eventos.component.scss']
 })
@@ -50,9 +50,11 @@ export class AgendarEventosComponent {
     ngOnInit(){
       this.getInformations.getEvents().subscribe(
         (data)=> {
+          console.log(data)
           this.highlightedDates = (Array.isArray(data) ? data : []).map(event =>({
               day: new Date(event.dateEvent).getUTCDate(),
               month: new Date(event.dateEvent).getUTCMonth() + 1,
+              
           }))
         },
         ()=> (this.highlightedDates = [])
@@ -104,7 +106,7 @@ export class AgendarEventosComponent {
   
 
 
-  months = [
+  months: string[] = [
     'Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho',
     'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'
   ];
@@ -114,16 +116,23 @@ export class AgendarEventosComponent {
 
 
   highlightedDates: any [] = [];
+
+
+  currentYear: number = new Date().getFullYear()
+  selectedYear: number = this.currentYear
+  years: number[] = [this.currentYear, this.currentYear + 1]
   
   
 
-  getDaysInMonth(monthIndex: number): number[] {
-    const year = new Date().getFullYear();
+  getDaysInMonth(monthIndex: number, year: number): number[] {
     const firstDay = new Date(year, monthIndex, 1).getDay(); 
     const daysInMonth = new Date(year, monthIndex + 1, 0).getDate();
     
   
-    return [...Array(firstDay).fill(0), ...Array.from({ length: daysInMonth }, (_, i) => i + 1)];
+    return [
+      ...Array(firstDay).fill(0), 
+      ...Array.from({ length: daysInMonth }, (_, i) => i + 1)
+    ];
   }
 
   isHighlighted(day: number, monthIndex: number): boolean {

@@ -70,8 +70,8 @@
                         <path
                             d="M9.5 13a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0m0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0m0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0" />
                     </svg></span>
-                <select class="form-select" aria-label="Cardápio" formControlName="menu" >
-                    <option disabled selected value="">Cardápio</option>
+                <select class="form-select" formControlName="menu" >
+                    <option selected disabled>Cardápio</option>
                     <option *ngFor="let menu of menuList" [value]="menu.name">{{menu.name}}</option>
                 </select>
             </div>
@@ -108,6 +108,11 @@
 
     <div class="option-calendar">
         <h2>Calendário</h2>
+        <div class="filter">
+            <select  id="year" [(ngModel)]="selectedYear">
+                <option *ngFor="let year of years" [value]="year">{{year}}</option>
+            </select>
+        </div>
         <div class="calendar-container ">
             <div *ngFor="let month of months; let i = index" class="month">
                 <h3>{{ month }}</h3>
@@ -117,8 +122,8 @@
                 </div>
 
                 <div class="days-grid">
-                    <span *ngFor="let day of getDaysInMonth(i)" [class.highlighted]="isHighlighted(day, i)">
-                        {{ day || '' }}
+                    <span *ngFor="let day of getDaysInMonth(i, selectedYear)" [class.highlighted]="isHighlighted(day, i)">
+                        {{ day === 0 ?  'x' : day}}
                     </span>
                 </div>
             </div>
