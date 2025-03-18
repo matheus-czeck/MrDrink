@@ -109,10 +109,11 @@
     <div class="option-calendar">
         <h2>Calendário</h2>
         <div class="filter">
-            <select  id="year" [(ngModel)]="selectedYear">
+            <select  id="year" [(ngModel)]="selectedYear" (change)="onYearChange()">
                 <option *ngFor="let year of years" [value]="year">{{year}}</option>
             </select>
         </div>
+        <h2>{{selectedYear}}</h2>
         <div class="calendar-container ">
             <div *ngFor="let month of months; let i = index" class="month">
                 <h3>{{ month }}</h3>
@@ -122,7 +123,8 @@
                 </div>
 
                 <div class="days-grid">
-                    <span *ngFor="let day of getDaysInMonth(i, selectedYear)" [class.highlighted]="isHighlighted(day, i)">
+                    <span *ngFor="let day of getDaysInMonth(i, selectedYear)" 
+                    [class.highlighted]="isHighlighted(day,  i, selectedYear)">
                         {{ day === 0 ?  'x' : day}}
                     </span>
                 </div>

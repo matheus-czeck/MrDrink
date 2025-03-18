@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { MainTemplate } from "../mainTemplate/mainTemplate.component";
 import { MatDatepickerModule } from '@angular/material/datepicker'
 import { CommonModule } from '@angular/common';
@@ -45,21 +45,40 @@ export class AgendarEventosComponent {
 
     ]
 
-  
-
     ngOnInit(){
-      this.getInformations.getEvents().subscribe(
-        (data)=> {
-          console.log(data)
-          this.highlightedDates = (Array.isArray(data) ? data : []).map(event =>({
-              day: new Date(event.dateEvent).getUTCDate(),
-              month: new Date(event.dateEvent).getUTCMonth() + 1,
-              
-          }))
-        },
-        ()=> (this.highlightedDates = [])
-      )
+      this.loadEvents();
     }
+    onYearChange(){
+      this.loadEvents();
+      console.log("clicou")
+    }
+    
+    loadEvents() {
+      this.getInformations.getEvents().subscribe(
+        (data) => {
+          console.log(data);
+          
+          this.highlightedDates = (Array.isArray(data) ? data : [])
+            .filter(event => {
+              const eventYear = new Date(event.dateEvent).getFullYear();
+              return eventYear === this.selectedYear;  
+            })
+            .map(event => {
+              const eventDate = new Date(event.dateEvent);
+              return {
+                day: eventDate.getUTCDate(),
+                month: eventDate.getUTCMonth() + 1,
+                year: eventDate.getFullYear(),
+              };
+            });
+    
+          console.log('Eventos destacados:', this.highlightedDates);
+        },
+        () => (this.highlightedDates = [])
+      );
+    }
+
+    
 
 
   
@@ -67,6 +86,7 @@ export class AgendarEventosComponent {
    confirmEvent () {
     const eventData = this.infoEvents.value
     console.log(eventData)
+    console.log(this.highlightedDates)
 
     this.eventService.createEvent(eventData).subscribe({
       next: (response)=>{
@@ -116,6 +136,7 @@ export class AgendarEventosComponent {
 
 
   highlightedDates: any [] = [];
+  
 
 
   currentYear: number = new Date().getFullYear()
@@ -135,8 +156,17 @@ export class AgendarEventosComponent {
     ];
   }
 
-  isHighlighted(day: number, monthIndex: number): boolean {
-    return this.highlightedDates.some(h =>h.day === day && h.month === monthIndex + 1);
+  isHighlighted(day: number, monthIndex: number, year: number): boolean {
+    
+    const isMarked = this.highlightedDates.some(
+      h => h.day === day && h.month === monthIndex + 1 && h.year === year
+    );
+  
+    if (isMarked) {
+      console.log(` Dia marcado: ${day}/${monthIndex + 1}/${year}`);
+    }
+  
+    return isMarked;
   }
 
   
