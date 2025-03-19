@@ -46,22 +46,21 @@ export class AgendarEventosComponent {
     ]
 
     ngOnInit(){
-      this.loadEvents();
+      this.loadEvents(this.selectedYear);
     }
-    onYearChange(){
-      this.loadEvents();
-      console.log("clicou")
+    onYearChange(year: number){
+     this.selectedYear = year
+     this.loadEvents(year)
     }
     
-    loadEvents() {
+    loadEvents(year: number) {
       this.getInformations.getEvents().subscribe(
         (data) => {
-          console.log(data);
           
           this.highlightedDates = (Array.isArray(data) ? data : [])
             .filter(event => {
               const eventYear = new Date(event.dateEvent).getFullYear();
-              return eventYear === this.selectedYear;  
+              return eventYear === year;  
             })
             .map(event => {
               const eventDate = new Date(event.dateEvent);
@@ -85,8 +84,6 @@ export class AgendarEventosComponent {
 
    confirmEvent () {
     const eventData = this.infoEvents.value
-    console.log(eventData)
-    console.log(this.highlightedDates)
 
     this.eventService.createEvent(eventData).subscribe({
       next: (response)=>{
