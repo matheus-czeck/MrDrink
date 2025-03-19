@@ -70,10 +70,10 @@
                         <path
                             d="M9.5 13a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0m0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0m0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0" />
                     </svg></span>
-                <select class="form-select" formControlName="menu" >
-                    <option selected disabled>Cardápio</option>
-                    <option *ngFor="let menu of menuList" [value]="menu.name">{{menu.name}}</option>
-                </select>
+                    <select class="form-select" formControlName="menu" >
+                        <option selected disabled >Cardápio</option>
+                        <option *ngFor="let menu of menuList"  [value]="menu.name">{{menu.name}}</option>
+                    </select>
             </div>
             <div class="input-group mb-3">
                 <span class="input-group-text"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
@@ -107,13 +107,13 @@
 
 
     <div class="option-calendar">
-        <h2>Calendário</h2>
+        <h2>Calendário {{selectedYear}}</h2>
         <div class="filter">
             <button *ngFor="let year of years" [disabled]="selectedYear === year"(click)="onYearChange(year)">
                 {{ year }}
               </button>
         </div>
-        <h2>{{selectedYear}}</h2>
+        
         <div class="calendar-container ">
             <div *ngFor="let month of months; let i = index" class="month">
                 <h3>{{ month }}</h3>
