@@ -109,7 +109,7 @@
     <div class="option-calendar">
         <h2>Calendário {{selectedYear}}</h2>
         <div class="filter">
-            <button *ngFor="let year of years" [disabled]="selectedYear === year"(click)="onYearChange(year)">
+            <button *ngFor="let year of years" class="filter-color" [disabled]="selectedYear === year"(click)="onYearChange(year)">
                 {{ year }}
               </button>
         </div>

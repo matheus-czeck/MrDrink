@@ -125,5 +125,18 @@ select:hover {
   option:disabled {
     color: red;
 }
+
+.filter-color{
+    border: none;
+    
+
+}
+.filter-color:disabled{
+    border: 1px solid black;
+    background-color: lightgray;
+    color: rgb(134, 134, 134);
+    
+
+}
   
 
