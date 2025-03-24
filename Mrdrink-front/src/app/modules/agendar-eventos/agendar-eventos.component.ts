@@ -3,8 +3,8 @@ import { MainTemplate } from "../mainTemplate/mainTemplate.component";
 import { MatDatepickerModule } from '@angular/material/datepicker'
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule, FormsModule, FormGroup, FormControl, FormArray } from '@angular/forms';
-import { EventService } from '../../services/serviceConfirm/event.service';
-import { GetInformations } from '../../services/serviceConfirm/getInformations.service';
+import { EventService } from '../../services/serviceEvent/event.service';
+import { GetInformations } from '../../services/serviceEvent/getInformations.service';
 
 
 
@@ -56,8 +56,9 @@ export class AgendarEventosComponent {
     loadEvents(year: number) {
       this.getInformations.getEvents().subscribe(
         (data) => {
-          
-          this.highlightedDates = (Array.isArray(data) ? data : [])
+          const allEvents = [...(data.confirmedEvent || []), ...(data.scheduleEvent || [])];
+          console.log("informações data", allEvents)
+          this.highlightedDates = (Array.isArray(allEvents) ? allEvents : [])
             .filter(event => {
               const eventYear = new Date(event.dateEvent).getFullYear();
               return eventYear === year;  
@@ -99,9 +100,21 @@ export class AgendarEventosComponent {
 
   scheduleEvent() {
     const eventData = this.infoEvents.value
-    console.log(eventData)
+    console.log("evento captado ScheduleEvent: ",eventData)
+    
+    this.eventService.schudeleEvent(eventData).subscribe({
+      next: (response) =>{
+        console.log("Evento agendado com sucesso", response)
 
-  }
+      },
+      error: (error)=>{
+        console.log("Erro ao agendar evento:", error)
+
+      }
+  })
+
+    }
+
 
   onTeamCheckboxChange(event: Event, teamName: string){
     const checkbox = event.target as HTMLInputElement

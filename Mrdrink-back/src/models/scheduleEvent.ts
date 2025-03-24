@@ -1,10 +1,10 @@
 import { DataTypes, Model } from "sequelize";
 import  sequelize  from "../config/dbMrdrink"
 
-export class confirmedEvent extends Model {
+export class scheduleEvent extends Model {
 }
 
-confirmedEvent.init(
+scheduleEvent.init(
     {
         id: {
             type: DataTypes.INTEGER,
@@ -42,8 +42,8 @@ confirmedEvent.init(
     }, 
     {
         sequelize,
-        modelName: "confirmedEvent",
-        tableName: "confirmed_events",
+        modelName: "scheduleEvent",
+        tableName: "schedule_event",
         timestamps: true,
     }
 

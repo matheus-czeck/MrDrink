@@ -1,5 +1,5 @@
 import { Response, Request } from "express";
-import { createConfirmedEvent } from "../../services/service/confirmEvent.service";
+import { createConfirmedEvent } from "../service/createConfirmedEvent.service";
 
 export async function ConfirmedEventController(req: Request, res: Response): Promise<void>{
       try {

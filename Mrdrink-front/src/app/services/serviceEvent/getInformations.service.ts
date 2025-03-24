@@ -17,7 +17,7 @@ export class GetInformations {
     getEvents(): Observable<any>{
         return this.http.get<any>(this.apiUrl).pipe(
             catchError((error)=>{
-                console.log("Erro ao bsucar eventos", error)
+                console.log("Erro ao buscar eventos", error)
                 return of([])
 
             })

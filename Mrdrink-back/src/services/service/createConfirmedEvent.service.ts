@@ -1,8 +1,8 @@
-import { confimedEvent} from "../../models/confirmedEvent";
+import { confirmedEvent} from "../../models/confirmedEvent";
 
 export async function createConfirmedEvent(eventData: any) {
   try {
-    const event = await confimedEvent.create(eventData);
+    const event = await confirmedEvent.create(eventData);
     return event;
   } catch (error) {
     console.error("Erro ao salvar o evento:", error);
