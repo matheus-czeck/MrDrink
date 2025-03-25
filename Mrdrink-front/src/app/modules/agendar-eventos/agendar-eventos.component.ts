@@ -16,11 +16,11 @@ import { GetInformations } from '../../services/serviceEvent/getInformations.ser
   templateUrl: './agendar-eventos.component.html',
   styleUrls: ['./agendar-eventos.component.scss']
 })
-export class AgendarEventosComponent {
+export class AgendarEventosComponent implements OnInit{
 
   constructor(private eventService: EventService, private getInformations: GetInformations){}
   
-  infoEvents = new FormGroup ({
+  infoEvents: FormGroup = new FormGroup ({
     nameCouple: new FormControl(""),
     dateEvent: new FormControl(null),
     amountGuests: new FormControl(null),
@@ -53,30 +53,29 @@ export class AgendarEventosComponent {
      this.loadEvents(year)
     }
     
-    loadEvents(year: number) {
-      this.getInformations.getEvents().subscribe(
-        (data) => {
-          const allEvents = [...(data.confirmedEvent || []), ...(data.scheduleEvent || [])];
-          console.log("informações data", allEvents)
-          this.highlightedDates = (Array.isArray(allEvents) ? allEvents : [])
-            .filter(event => {
-              const eventYear = new Date(event.dateEvent).getFullYear();
-              return eventYear === year;  
-            })
-            .map(event => {
-              const eventDate = new Date(event.dateEvent);
-              return {
-                day: eventDate.getUTCDate(),
-                month: eventDate.getUTCMonth() + 1,
-                year: eventDate.getFullYear(),
-              };
-            });
     
-          console.log('Eventos destacados:', this.highlightedDates);
-        },
-        () => (this.highlightedDates = [])
-      );
-    }
+  loadEvents(year: number) {
+    this.getInformations.getEvents().subscribe(
+      (data) => {
+        const allEvents = [...(data.confirmedEvent || []), ...(data.scheduleEvent || [])];
+        console.log("informações data", allEvents);
+        
+        this.highlightedDates = allEvents
+          .filter(event => new Date(event.dateEvent).getFullYear() === year)
+          .map(event => ({
+            day: new Date(event.dateEvent).getUTCDate(),
+            month: new Date(event.dateEvent).getUTCMonth() + 1,
+            year: new Date(event.dateEvent).getFullYear(),
+            type: data.confirmedEvent?.some((e: { dateEvent: string }) => e.dateEvent === event.dateEvent) 
+            ? "confirmed" 
+            : "schedule"
+          }));
+
+        console.log('Eventos destacados:', this.highlightedDates);
+      },
+      () => (this.highlightedDates = [])
+    );
+  }
 
     
 
@@ -102,7 +101,7 @@ export class AgendarEventosComponent {
     const eventData = this.infoEvents.value
     console.log("evento captado ScheduleEvent: ",eventData)
     
-    this.eventService.schudeleEvent(eventData).subscribe({
+    this.eventService.scheduleEvent(eventData).subscribe({
       next: (response) =>{
         console.log("Evento agendado com sucesso", response)
 
@@ -118,14 +117,14 @@ export class AgendarEventosComponent {
 
   onTeamCheckboxChange(event: Event, teamName: string){
     const checkbox = event.target as HTMLInputElement
-    const selecedTeams = this.infoEvents.get("selectedTeams") as FormArray
+    const selectedTeams = this.infoEvents.get("selectedTeams") as FormArray
 
     if(checkbox.checked){
-      selecedTeams.push(new FormControl(teamName))
+      selectedTeams.push(new FormControl(teamName))
     } else {
-      const index = selecedTeams.controls.findIndex(control => control.value === teamName)
+      const index = selectedTeams.controls.findIndex(control => control.value === teamName)
       if (index !== -1){
-        selecedTeams.removeAt(index)
+        selectedTeams.removeAt(index)
 
       }
     }
@@ -166,17 +165,12 @@ export class AgendarEventosComponent {
     ];
   }
 
-  isHighlighted(day: number, monthIndex: number, year: number): boolean {
+  getHighlightType(day: number, monthIndex: number, year: number): string | null {
     
-    const isMarked = this.highlightedDates.some(
+    const event = this.highlightedDates.find (
       h => h.day === day && h.month === monthIndex + 1 && h.year === year
     );
-  
-    if (isMarked) {
-      console.log(` Dia marcado: ${day}/${monthIndex + 1}/${year}`);
-    }
-  
-    return isMarked;
+    return event ? event.type : null 
   }
 
   

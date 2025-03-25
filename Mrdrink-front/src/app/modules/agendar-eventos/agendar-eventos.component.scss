@@ -117,9 +117,15 @@ select:hover {
     text-align: center;
   }
   
-  .highlighted {
-    background-color: rgba(255, 0, 0, 0.452);
+  .highlighted-confirmed {
+    background-color: red;
+    color: white;
     
+  }
+  .highlighted-schedule{
+    background-color: orange;
+    color: white;
+
   }
 
   option:disabled {

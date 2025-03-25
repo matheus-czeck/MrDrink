@@ -19,7 +19,7 @@ export class EventService {
         return this.http.post<any>(this.apiUrl, eventData)
     }
 
-    schudeleEvent(eventData: any): Observable<any>{
+   scheduleEvent(eventData: any): Observable<any>{
         return this.http.post<any>(this.scheduleApiUrl, eventData)
 
     }

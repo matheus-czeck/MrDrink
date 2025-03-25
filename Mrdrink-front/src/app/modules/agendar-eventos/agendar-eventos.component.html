@@ -123,8 +123,14 @@
                 </div>
 
                 <div class="days-grid">
-                    <span *ngFor="let day of getDaysInMonth(i, selectedYear)" 
-                    [class.highlighted]="isHighlighted(day,  i, selectedYear)">
+                    <span 
+                    *ngFor="let day of getDaysInMonth(i, selectedYear)" 
+                    [ngClass]="{
+                        'highlighted-confirmed': getHighlightType(day, i , selectedYear) === 'confirmed',
+                        'highlighted-schedule': getHighlightType(day, i , selectedYear) === 'schedule',
+
+                    }"
+                    >
                         {{ day === 0 ?  '-' : day}}
                     </span>
                 </div>
