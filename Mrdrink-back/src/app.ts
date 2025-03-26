@@ -7,6 +7,7 @@ import dotenv from 'dotenv';
 import confirmEvent from "./routes/confirmEvents.routes"
 import getInformations from "./routes/GetInformations.routes"
 import scheduleEvents from "./routes/scheduleEvents.routes"
+import  getTeamsNames  from './routes/getTeamNames.routes';
 
 
 dotenv.config();
@@ -28,6 +29,7 @@ app.use('/auth', authRoutes);
 app.use("/events", confirmEvent)
 app.use("/events", scheduleEvents)
 app.use("/eventos", getInformations );
+app.use("/teams", getTeamsNames );
 
 sequelize
  .sync({alter: true})

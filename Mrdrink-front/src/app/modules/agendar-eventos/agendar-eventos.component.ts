@@ -1,24 +1,31 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, inject } from '@angular/core';
 import { MainTemplate } from "../mainTemplate/mainTemplate.component";
 import { MatDatepickerModule } from '@angular/material/datepicker'
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule, FormsModule, FormGroup, FormControl, FormArray } from '@angular/forms';
 import { EventService } from '../../services/serviceEvent/event.service';
 import { GetInformations } from '../../services/serviceEvent/getInformations.service';
-
+import { ChangeDetectorRef } from '@angular/core';
+import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 
 
 
 @Component({
   selector: 'app-agendar-eventos',
   standalone: true,
-  imports: [MainTemplate, FormsModule, MatDatepickerModule, CommonModule, ReactiveFormsModule],
+  imports: [ MatSnackBarModule, MatSnackBar,MainTemplate, FormsModule, MatDatepickerModule, CommonModule, ReactiveFormsModule],
   templateUrl: './agendar-eventos.component.html',
   styleUrls: ['./agendar-eventos.component.scss']
 })
 export class AgendarEventosComponent implements OnInit{
 
-  constructor(private eventService: EventService, private getInformations: GetInformations){}
+  private snackBar = inject(MatSnackBar)
+
+  constructor(
+    private eventService: EventService, 
+    private getInformations: GetInformations,
+    private cdr: ChangeDetectorRef,
+  ){}
   
   infoEvents: FormGroup = new FormGroup ({
     nameCouple: new FormControl(""),
@@ -36,17 +43,11 @@ export class AgendarEventosComponent implements OnInit{
       {name:"Premium Plus"},
 
     ]
-
-    teamList = [
-      {name:"Tazky" ,id:"0"},
-      {name:"Murilo" ,id:"0"},
-      {name:"Mt" ,id:"0"},
-      {name:"Th" ,id:"0"},
-
-    ]
+    teamList: any[] = [];
 
     ngOnInit(){
       this.loadEvents(this.selectedYear);
+      this.searchingTeam()
     }
     onYearChange(year: number){
      this.selectedYear = year
@@ -77,22 +78,52 @@ export class AgendarEventosComponent implements OnInit{
     );
   }
 
-    
-
+  searchingTeam() {
+    this.getInformations.getTeamNames().subscribe(
+      (data) => {
+        if (data && data.findNameTeams && data.findNameTeams.length > 0) {
+          // Preenchendo a lista de equipes com base na estrutura correta dos dados
+          this.teamList = data.findNameTeams.map((team: any) => ({ 
+            name: team.userName.split('.')[0],
+            id: team.id
+          }));
+          console.log('Equipes recebidas:', this.teamList);
+          this.cdr.detectChanges();  // Garantir que a atualização seja detectada
+        } else {
+          console.log('Nenhuma equipe encontrada');
+        }
+      },
+      (error) => {
+        console.error('Erro ao buscar equipes:', error);
+        this.showNotification('Erro ao buscar equipes.', 'error');
+      }
+    );
+  }
 
   
-
    confirmEvent () {
     const eventData = this.infoEvents.value
 
     this.eventService.createEvent(eventData).subscribe({
       next: (response)=>{
+        setTimeout(() => {
+          this.showNotification('Evento confirmado com sucesso!', "success")
+        }, 500)
+
         console.log("Evento confirmado com sucesso", response);
       },
       error: (error)=>{
         console.error("Erro ao confirmar evento:", error)
-
+        this.showNotification('Erro ao confirmar evento.', 'error');
       }
+    })
+
+  }
+
+  showNotification(menssage: string, type: "success" | "error" | "warning"){
+    this.snackBar.open(menssage, 'Fechar',{
+      duration: 3000,
+      panelClass: `snackbar-${type}`
     })
 
   }
@@ -104,10 +135,12 @@ export class AgendarEventosComponent implements OnInit{
     this.eventService.scheduleEvent(eventData).subscribe({
       next: (response) =>{
         console.log("Evento agendado com sucesso", response)
+        this.showNotification('Evento agendado com sucesso!', 'success');
 
       },
       error: (error)=>{
         console.log("Erro ao agendar evento:", error)
+        this.showNotification('Erro ao agendar evento.', 'error');
 
       }
   })

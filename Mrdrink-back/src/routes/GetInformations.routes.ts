@@ -1,4 +1,3 @@
-import { Router } from "express";
 import { getInformations } from "../services/service/GetInformations.service";
 import express from "express"
 

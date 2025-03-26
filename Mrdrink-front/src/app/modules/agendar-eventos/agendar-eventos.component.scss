@@ -144,5 +144,20 @@ select:hover {
     
 
 }
+
+.snackbar-success {
+    background-color: #28a745 !important;
+    color: white;
+  }
+  
+  .snackbar-error {
+    background-color: #dc3545 !important;
+    color: white;
+  }
+  
+  .snackbar-warning {
+    background-color: #ffc107 !important;
+    color: black;
+  }
   
 

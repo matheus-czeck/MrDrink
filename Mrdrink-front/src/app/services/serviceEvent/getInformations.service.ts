@@ -11,6 +11,7 @@ import {catchError, Observable, of} from 'rxjs'
 
 export class GetInformations {
     private apiUrl = 'http://localhost:3000/eventos';
+    private teamApiUrl = 'http://localhost:3000/teams';
 
     constructor(private http: HttpClient){}
 
@@ -19,7 +20,15 @@ export class GetInformations {
             catchError((error)=>{
                 console.log("Erro ao buscar eventos", error)
                 return of([])
+            })
+        )
+    }
 
+    getTeamNames():Observable<any>{
+        return this.http.get<any>(this.teamApiUrl).pipe(
+            catchError((error)=>{
+                console.log("Error ao buscar o nome do time", error)
+                return of ([])
             })
         )
 

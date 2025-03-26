@@ -1,4 +1,4 @@
-const { confirmedEvent } = require("../../models/confirmedEvent")
+import { confirmedEvent } from "../../models/confirmedEvent"
 import { Request, Response } from "express";
 import { scheduleEvent } from "../../models/scheduleEvent";
 
