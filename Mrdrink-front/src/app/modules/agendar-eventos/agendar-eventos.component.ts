@@ -13,7 +13,7 @@ import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 @Component({
   selector: 'app-agendar-eventos',
   standalone: true,
-  imports: [ MatSnackBarModule, MatSnackBar,MainTemplate, FormsModule, MatDatepickerModule, CommonModule, ReactiveFormsModule],
+  imports: [ MatSnackBarModule,MainTemplate, FormsModule, MatDatepickerModule, CommonModule, ReactiveFormsModule],
   templateUrl: './agendar-eventos.component.html',
   styleUrls: ['./agendar-eventos.component.scss']
 })

@@ -8,5 +8,8 @@ import { MainTemplate } from '../mainTemplate/mainTemplate.component';
   styleUrl: './equipe.component.scss'
 })
 export class EquipeComponent {
+  
+   userName = "tazky"
+ 
 
 }
