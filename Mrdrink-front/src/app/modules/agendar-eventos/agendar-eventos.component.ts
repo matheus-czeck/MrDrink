@@ -82,13 +82,12 @@ export class AgendarEventosComponent implements OnInit{
     this.getInformations.getTeamNames().subscribe(
       (data) => {
         if (data && data.findNameTeams && data.findNameTeams.length > 0) {
-          // Preenchendo a lista de equipes com base na estrutura correta dos dados
           this.teamList = data.findNameTeams.map((team: any) => ({ 
             name: team.userName.split('.')[0],
             id: team.id
           }));
           console.log('Equipes recebidas:', this.teamList);
-          this.cdr.detectChanges();  // Garantir que a atualização seja detectada
+          this.cdr.detectChanges();
         } else {
           console.log('Nenhuma equipe encontrada');
         }

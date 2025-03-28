@@ -23,7 +23,26 @@
     border-radius: 10px;
     
     li {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
         color: white;
+        list-style-type: none;
+
+        span {
+            width: 10px;
+            height: 10px;
+            margin-right: .5rem;
+            border-radius: 10px;
+           
+        }
+        .avaliable{
+            background-color: green;
+        }
+        .unavaliable{
+            background-color: red;
+
+        }
 
     }
     

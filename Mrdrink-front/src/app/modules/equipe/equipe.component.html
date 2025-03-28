@@ -8,7 +8,13 @@
                 <span>disponibilidade</span>
             </div>
             <ul>
-                <li><h2>{{userName}}</h2></li>
+                <li *ngFor="let team of names; let i = index">
+                    <span class="avaliable">
+                    </span>
+                        <h2>
+                            {{team}}
+                        </h2>
+                </li>
             </ul>
         </div>
         <div class="events">
