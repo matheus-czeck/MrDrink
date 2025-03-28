@@ -14,27 +14,51 @@ export class EquipeComponent implements OnInit {
 
   names: any[] = []
 
-  constructor(private getInformations: GetInformations,){}
+  constructor(private getInformations: GetInformations,) { }
 
 
   ngOnInit() {
+    this.startUnavaliable()
+
+  }
+
+
+  startUnavaliable() {
     this.getInformations.getTeamNames().subscribe(
-       (data)=>{
+      (data) => {
         console.log("Informaçõe de data", data)
-        this.names = data.findNameTeams.map((team: any)=>
-         team.userName.split('.')[0],
-  
+        this.names = data.findNameTeams.map((team: any) =>
+          team.userName.split('.')[0],
+
         )
         console.log("Informaçõe de names", this.names)
-        
+
       },
-    
-   ( err)=>{
-      console.error("Erro ao obter nomes da equipe: ", err)
-    }
+
+      (err) => {
+        console.error("Erro ao obter nomes da equipe: ", err)
+      }
     )
   }
-  
- 
-
 }
+
+/*
+startConfirmEvents() {
+  this.getInformations.getEvents().subscribe(
+    (data) => {
+      console.log("Informaçõe de data", data)
+      this.names = data.findNameTeams.map((team: any) =>
+        team.userName.split('.')[0],
+
+      )
+      console.log("Informaçõe de names", this.names)
+
+    },
+
+    (err) => {
+      console.error("Erro ao obter nomes da equipe: ", err)
+    }
+  )
+}
+
+}*/
