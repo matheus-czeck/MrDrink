@@ -1,4 +1,4 @@
-.content {
+.box {
     display: flex;
     justify-content: space-around;
     margin: 2.5rem 0;
@@ -51,4 +51,28 @@
         display: flex;
         align-self: center;
     }
+}
+.box-events{
+    display: flex;
+    flex-direction: column;
+    min-width: 250px;
+    background-color: rgba(46, 46, 46, 0.5);
+    padding: .8rem .8rem;
+    border-radius: 10px;
+
+    ul{
+        list-style-type: none;
+
+    }
+    
+    .informations-event{
+        display: flex;
+        flex-direction: row;
+        background-color: red;
+        margin-bottom: .8rem;
+
+    }
+
+
+
 }

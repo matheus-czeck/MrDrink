@@ -14,11 +14,16 @@ export class EquipeComponent implements OnInit {
 
   names: any[] = []
 
+  getEventsData: any[] = []
+
+
+
   constructor(private getInformations: GetInformations,) { }
 
 
   ngOnInit() {
     this.startUnavaliable()
+    this.startConfirmEvents()
 
   }
 
@@ -40,25 +45,27 @@ export class EquipeComponent implements OnInit {
       }
     )
   }
-}
 
-/*
-startConfirmEvents() {
-  this.getInformations.getEvents().subscribe(
-    (data) => {
-      console.log("Informaçõe de data", data)
-      this.names = data.findNameTeams.map((team: any) =>
-        team.userName.split('.')[0],
-
+  startConfirmEvents() {
+    this.getInformations.getEvents().subscribe(
+      (data) => {
+        this.getEventsData = data.confirmedEvent.map(
+          (event: { place: string; dateEvent: string; nameCouple: string, selectedTeams: string })=> ({
+            place: event.place,
+            selectedTeams: event.selectedTeams,
+            dateEvent: new Date(event.dateEvent).toLocaleDateString('pt-BR'),
+            nameCouple: event.nameCouple
+          }))
+      })
+      return(
+     console.log("Informaçõe de eventos", this.getEventsData)
       )
-      console.log("Informaçõe de names", this.names)
+  }
 
-    },
 
-    (err) => {
-      console.error("Erro ao obter nomes da equipe: ", err)
-    }
-  )
 }
 
-}*/
+
+
+
+

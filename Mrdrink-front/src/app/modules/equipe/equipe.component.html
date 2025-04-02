@@ -2,7 +2,7 @@
     <div class="welcome">
         <h1>Equipe</h1>
     </div>
-    <div class="content">
+    <div class="box content">
         <div class="availabiity">
             <div class="title">
                 <span>disponibilidade</span>
@@ -11,15 +11,54 @@
                 <li *ngFor="let team of names; let i = index">
                     <span class="avaliable">
                     </span>
-                        <h2>
-                            {{team}}
-                        </h2>
+                    <h2>
+                        {{team}}
+                    </h2>
                 </li>
             </ul>
         </div>
-        <div class="events">
+        <div class="box-events">
             <div class="title">
                 <span>eventos</span>
+                <div class="box-event">
+                    <div>
+                        <img src="#" alt="">
+                    </div>
+                    <div>
+                        <ul>
+                            <li *ngFor="let getEventsData of getEventsData; let i = index">
+                                <div class="informations-event">
+                                    <div>
+                                        <p>
+                                            {{getEventsData.place}}
+                                        </p>
+                                    </div>
+                                    <span>-</span>
+                                    <div>
+                                        <p>
+                                            {{getEventsData.nameCouple}}
+                                        </p>
+                                    </div>
+                                    <span>-</span>
+                                    <div>
+                                        <p>
+                                            {{getEventsData.dateEvent}}
+                                        </p>
+                                    </div>
+                                    <div>
+
+                                        <p>
+                                            {{getEventsData.selectedTeams}}
+                                        </p>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+
+
+                    </div>
+                </div>
+
             </div>
 
 
