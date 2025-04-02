@@ -67,9 +67,16 @@
     
     .informations-event{
         display: flex;
-        flex-direction: row;
-        background-color: red;
-        margin-bottom: .8rem;
+        flex-wrap: wrap;
+        gap: 10px;
+        justify-content: center;
+        
+        .child{
+            width: calc(20.33% - 10px);
+        }
+        .child:last-child{
+        width: 100%;
+        }
 
     }
 
