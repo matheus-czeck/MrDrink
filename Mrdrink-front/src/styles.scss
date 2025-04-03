@@ -56,6 +56,22 @@ h1,h2{
   cursor: pointer;
 }
 }
+.avaliable{
+    display: inline-block;
+    width:10px;
+    height: 10px;
+    margin-right: .5rem;
+    border-radius: 10px;
+   background-color: green;
+}
+.unavaliable{
+  width: 10px;
+    height: 10px;
+    margin-right: .5rem;
+    border-radius: 10px;
+  background-color: red;
+
+}
 
 
 html, body { height: 100%; }

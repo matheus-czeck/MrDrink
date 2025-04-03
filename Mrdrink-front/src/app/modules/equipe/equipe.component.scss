@@ -1,3 +1,6 @@
+* {
+    box-sizing: border-box;
+  }
 .box {
     display: flex;
     justify-content: space-around;
@@ -21,28 +24,15 @@
     background-color: rgba(46, 46, 46, 0.5);
     padding: .8rem .8rem;
     border-radius: 10px;
+    margin-bottom: 1.5rem;
     
     li {
         display: flex;
+       
         flex-direction: row;
         align-items: center;
         color: white;
-        list-style-type: none;
-
-        span {
-            width: 10px;
-            height: 10px;
-            margin-right: .5rem;
-            border-radius: 10px;
-           
-        }
-        .avaliable{
-            background-color: green;
-        }
-        .unavaliable{
-            background-color: red;
-
-        }
+        list-style-type: none;  
 
     }
     
@@ -55,28 +45,72 @@
 .box-events{
     display: flex;
     flex-direction: column;
-    min-width: 250px;
+    height: 400px;
     background-color: rgba(46, 46, 46, 0.5);
     padding: .8rem .8rem;
-    border-radius: 10px;
+    border-radius: 15px;
+    overflow-x: hidden;
+    overflow-y: scroll;
+    align-content:center;
+    
+
+    
 
     ul{
         list-style-type: none;
+        max-height: 500px;
 
     }
-    
+    .align{       
+        display: flex;
+        flex-wrap: wrap;
+        flex-direction: row;
+        justify-content: space-evenly;
+        background-color:  rgba(211, 211, 211, 0.178);
+     
+          
+      
+        border-radius: 15px;
+        margin-bottom: 1rem;
+        padding: 0 .5rem;
+
+        .photo-event{
+            display: block;
+            flex-wrap: wrap;
+            align-content: center;
+            justify-content: center;
+            margin-right: .5rem;
+            span{
+                width: 20px;
+                height: 20px;
+                background-image: url(../../../assets/image/mr-drink.png);
+            }
+        }
+
+    }
     .informations-event{
         display: flex;
         flex-wrap: wrap;
-        gap: 10px;
+        width: 65vh;
         justify-content: center;
+        gap: 10px;
+        
+        
         
         .child{
-            width: calc(20.33% - 10px);
+            width: calc(30%);
+
+            p{
+                font-size: 16px;
+                word-wrap: break-word;
+                overflow: hidden;
+                
+            }
+    
         }
         .child:last-child{
-        width: 100%;
-        }
+            flex: 1;
+            }
 
     }
 

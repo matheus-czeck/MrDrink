@@ -21,25 +21,24 @@
             <div class="title">
                 <span>eventos</span>
                 <div class="box-event">
-                    <div>
-                        <img src="#" alt="">
-                    </div>
-                    <div>
                         <ul>
-                            <li *ngFor="let getEventsData of getEventsData; let i = index">
+                            <li class="align" *ngFor="let getEventsData of getEventsData; let i = index">
+                                <div class="photo-event">
+                                    <span></span>
                                 <div class="informations-event">
+                                    
                                     <div class="child">
                                         <p>
                                             {{getEventsData.place}}
                                         </p>
                                     </div>
-                                    <span>-</span>
+                                   
                                     <div class="child">
                                         <p>
                                             {{getEventsData.nameCouple}}
                                         </p>
                                     </div>
-                                    <span>-</span>
+                                    
                                     <div class="child">
                                         <p>
                                             {{getEventsData.dateEvent}}
@@ -48,15 +47,12 @@
                                     <div class="child">
 
                                         <p>
-                                            {{getEventsData.selectedTeams}}
+                                           <span class="avaliable"></span> {{getEventsData.selectedTeams}}
                                         </p>
                                     </div>
                                 </div>
                             </li>
                         </ul>
-
-
-                    </div>
                 </div>
 
             </div>
