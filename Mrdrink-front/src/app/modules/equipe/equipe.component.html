@@ -21,43 +21,32 @@
             <div class="title">
                 <span>eventos</span>
                 <div class="box-event">
-                        <ul>
-                            <li class="align" *ngFor="let getEventsData of getEventsData; let i = index">
-                                <div class="photo-event">
-                                    <span></span>
-                                <div class="informations-event">
-                                    
-                                    <div class="child">
-                                        <p>
-                                            {{getEventsData.place}}
-                                        </p>
-                                    </div>
-                                   
-                                    <div class="child">
-                                        <p>
-                                            {{getEventsData.nameCouple}}
-                                        </p>
-                                    </div>
-                                    
-                                    <div class="child">
-                                        <p>
-                                            {{getEventsData.dateEvent}}
-                                        </p>
-                                    </div>
-                                    <div class="child">
-
-                                        <p>
-                                           <span class="avaliable"></span> {{getEventsData.selectedTeams}}
-                                        </p>
-                                    </div>
+                    <ul>
+                        <li class="align" *ngFor="let getEventsData of getEventsData; let i = index">
+                            <div class="photo-event">
+                                <span><img src="https://lh6.googleusercontent.com/HJ-Le06mARI2ogOCpU_uUEekr9KsCH42rKqEWeEEEoQ8-lIcHIGX8S58SH7BHDkBKfBCF6Hp8csUDKs8j3J7V1tWY5FdrqamZzcZS3pfpkcu1dRJeK_0kcRggGgHcJFbwkvBejo5rqrQab9uX8LQu04" alt=""></span>
+                            </div>
+                            <div class="informations-event">
+                                <div class="child">
+                                    <p>{{ getEventsData.place }}</p>
                                 </div>
-                            </li>
-                        </ul>
+                                <div class="child">
+                                    <p>{{ getEventsData.nameCouple }}</p>
+                                </div>
+                                <div class="child">
+                                    <p>{{ getEventsData.dateEvent }}</p>
+                                </div>
+                                <div class="child">
+                                    <ng-container *ngFor="let team of getEventsData.selectedTeams.split(',')">
+                                        <span  class="avaliable"></span> {{ team }}
+                                      </ng-container>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
                 </div>
-
+                
             </div>
-
-
         </div>
 
     </div>

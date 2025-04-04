@@ -10,7 +10,7 @@
 .title{
     color: white;
     text-transform: uppercase;
-    font-size: small;
+    font-size: 18px;
     font-weight: bold;
     text-align: center;
     margin-bottom: 1rem;
@@ -71,19 +71,19 @@
           
       
         border-radius: 15px;
-        margin-bottom: 1rem;
-        padding: 0 .5rem;
+        margin: 1rem 0;
+        padding: .5rem .5rem;
 
         .photo-event{
             display: block;
             flex-wrap: wrap;
             align-content: center;
             justify-content: center;
-            margin-right: .5rem;
-            span{
-                width: 20px;
-                height: 20px;
-                background-image: url(../../../assets/image/mr-drink.png);
+            margin: .5rem;
+            img{
+                width: 60px;
+                height: 60px;
+                border-radius: 50%;
             }
         }
 
@@ -91,9 +91,9 @@
     .informations-event{
         display: flex;
         flex-wrap: wrap;
-        width: 65vh;
+        width: 50vh;
         justify-content: center;
-        gap: 10px;
+        gap: 0px 10px;
         
         
         

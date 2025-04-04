@@ -52,7 +52,7 @@ export class EquipeComponent implements OnInit {
         this.getEventsData = data.confirmedEvent.map(
           (event: { place: string; dateEvent: string; nameCouple: string, selectedTeams: string })=> ({
             place: event.place,
-            selectedTeams: event.selectedTeams,
+            selectedTeams: event.selectedTeams?.toString()?? "",
             dateEvent: new Date(event.dateEvent).toLocaleDateString('pt-BR'),
             nameCouple: event.nameCouple
           }))
