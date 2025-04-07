@@ -2,11 +2,12 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from "@angular/common"
 import { MainTemplate } from '../mainTemplate/mainTemplate.component';
 import { GetInformations } from "../../services/serviceEvent/getInformations.service"
+import { FormsModule } from '@angular/forms';
 
 
 @Component({
   selector: 'app-equipe',
-  imports: [MainTemplate, CommonModule],
+  imports: [MainTemplate, CommonModule, FormsModule],
   templateUrl: './equipe.component.html',
   styleUrl: './equipe.component.scss'
 })
@@ -61,6 +62,24 @@ export class EquipeComponent implements OnInit {
      console.log("Informaçõe de eventos", this.getEventsData)
       )
   }
+
+  OpenWindowAddCollaborator = false
+
+    openWindowCollaborator(){
+      this.OpenWindowAddCollaborator = true
+    }
+    closeWindowCollaborator(){
+      this.OpenWindowAddCollaborator = false
+    }
+
+    
+    nameCollaborator: string = '';
+    functionCollaborator: string = '';
+    addCollaborator(){
+
+      console.log("O novo colaborador tem o nome: ", this.nameCollaborator)
+
+    }
 
 
 }

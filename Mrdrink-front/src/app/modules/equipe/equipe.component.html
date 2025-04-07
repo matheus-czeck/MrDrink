@@ -30,9 +30,11 @@
                                 <div class="child">
                                     <p>{{ getEventsData.place }}</p>
                                 </div>
+                                <span>-</span>
                                 <div class="child">
                                     <p>{{ getEventsData.nameCouple }}</p>
                                 </div>
+                                <span>-</span>
                                 <div class="child">
                                     <p>{{ getEventsData.dateEvent }}</p>
                                 </div>
@@ -50,9 +52,36 @@
         </div>
 
     </div>
-    <div class="add-collaborator">
+    <div class="add-collaborator" *ngIf="!OpenWindowAddCollaborator">
         <div class="d-grid gap-2 d-md-block">
-            <button class="btn btn-primary" type="button">Adicionar colaborador</button>
+            <button class="btn btn-primary" type="button" (click)="openWindowCollaborator()">Adicionar colaborador</button>
         </div>
+    </div>
+
+    <div class="add-collaborator-container box-events" *ngIf="OpenWindowAddCollaborator">
+        <div class="close-btn">
+            <button type="button" (click)="closeWindowCollaborator()"> X</button>
+        </div>
+        <h2>
+            Novo colaborador
+        </h2>
+        
+        <form (ngSubmit)="addCollaborator()">
+            <label>Nome:</label>
+            <input type="text" [(ngModel)]="nameCollaborator" name="nome" required />
+          
+            <label>Função:</label><br />
+            <label>
+              <input type="radio" name="funcao" [(ngModel)]="functionCollaborator" value="@admin"  required />
+              Administrador
+            </label>
+            <label>
+              <input type="radio" name="funcao" [(ngModel)]="functionCollaborator" value="@bartender"  required />
+              Bartender
+            </label>
+          
+            <button type="submit">Adicionar Colaborador</button>
+          </form>
+
     </div>
 </app-mainTemplate>

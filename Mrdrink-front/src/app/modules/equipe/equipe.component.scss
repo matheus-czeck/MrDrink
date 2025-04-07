@@ -45,7 +45,7 @@
 .box-events{
     display: flex;
     flex-direction: column;
-    height: 400px;
+    max-height: 400px;
     background-color: rgba(46, 46, 46, 0.5);
     padding: .8rem .8rem;
     border-radius: 15px;
@@ -66,7 +66,7 @@
         flex-wrap: wrap;
         flex-direction: row;
         justify-content: space-evenly;
-        background-color:  rgba(211, 211, 211, 0.178);
+        background-color:  rgba(110, 110, 110, 0.103);
      
           
       
@@ -91,7 +91,7 @@
     .informations-event{
         display: flex;
         flex-wrap: wrap;
-        width: 50vh;
+        width: 72vh;
         justify-content: center;
         gap: 0px 10px;
         
@@ -113,7 +113,58 @@
             }
 
     }
+    
 
 
 
+}
+.add-collaborator-container{
+    margin-top: 20px;
+
+    .close-btn button{
+        background-color: transparent;
+        border: none;
+        color: red;
+        font-weight: bolder;
+        font-size: medium;
+    }
+
+    .close-btn{
+        margin-bottom: 1rem ;
+
+    }
+    
+    form {   
+        display: flex;
+        flex-direction: column;
+        
+        }
+
+    h2, label {
+        color: white;
+        font-weight: bold;
+
+    }
+    
+    input{
+        border: none;
+        border-radius: 10px;
+        margin-bottom:1.5rem ;
+        background-color: rgb(255, 255, 255);
+    }
+
+    button[type="submit"]{
+        border: none;
+        border-radius: 10px;
+        background-color:  rgba(34, 34, 34, 0.548);
+        color: red;
+    }
+
+    button[type="submit"]:hover{
+        background-color:  rgba(80, 80, 80, 0.548);
+        color: rgba(197, 0, 0, 0.774);
+         font-size: large;
+         font-weight: bold;
+         transition: .5s;
+    }
 }
