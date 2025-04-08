@@ -41,11 +41,48 @@
         display: flex;
         align-self: center;
     }
+    
+}
+
+.buttons-collaborator{
+    display: flex;
+    flex-direction: row;
+    width: 100vw;
+    justify-content: space-around;
+    margin-bottom: 1rem;
+}
+
+.btn-add-collaborator button{
+    background-color:transparent ;
+    border: 1px solid red;
+    color: red;
+    
+}
+.btn-add-collaborator button:hover{
+    background-color:red ;
+    color: black;
+    transition: .3s;
+    
+
+}
+.btn-remove-collaborator button{
+    background-color:red ;
+    border: 1px solid black;
+    color: black;
+    
+}
+.btn-remove-collaborator button:hover{
+    background-color:transparent ;
+    color: red;
+    border: 1px solid red;
+    transition: .3s;
+    
+
 }
 .box-events{
     display: flex;
     flex-direction: column;
-    max-height: 400px;
+    max-height: 450px;
     background-color: rgba(46, 46, 46, 0.5);
     padding: .8rem .8rem;
     border-radius: 15px;
@@ -150,7 +187,8 @@
         border: none;
         border-radius: 10px;
         margin-bottom:1.5rem ;
-        background-color: rgb(255, 255, 255);
+        background-color: rgba(255, 255, 255, 0.973);
+        padding: 5px 10px;
     }
 
     button[type="submit"]{
@@ -166,5 +204,9 @@
          font-size: large;
          font-weight: bold;
          transition: .5s;
+    }
+
+    input[type="radio"]:checked{
+       accent-color: red;
     }
 }

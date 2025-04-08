@@ -2,7 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from "@angular/common"
 import { MainTemplate } from '../mainTemplate/mainTemplate.component';
 import { GetInformations } from "../../services/serviceEvent/getInformations.service"
+import { AddCollaborator } from "../../services/serviceCollaborators/addCollaborator.service"
 import { FormsModule } from '@angular/forms';
+import { response } from 'express';
 
 
 @Component({
@@ -19,7 +21,10 @@ export class EquipeComponent implements OnInit {
 
 
 
-  constructor(private getInformations: GetInformations,) { }
+  constructor(
+    private getInformations: GetInformations, 
+    private collaboratorService: AddCollaborator
+  ) {}
 
 
   ngOnInit() {
@@ -64,20 +69,49 @@ export class EquipeComponent implements OnInit {
   }
 
   OpenWindowAddCollaborator = false
+  OpenWindowRemoveCollaborator = false
+
+
+
+  openRemoveCollaborator(){
+    this.OpenWindowRemoveCollaborator = true
+  }
 
     openWindowCollaborator(){
       this.OpenWindowAddCollaborator = true
     }
     closeWindowCollaborator(){
       this.OpenWindowAddCollaborator = false
+      
+    }
+    closeRemoveCollaborator(){
+      this.OpenWindowRemoveCollaborator = false
+
     }
 
     
     nameCollaborator: string = '';
+    passwordCollaborator: string = ''
     functionCollaborator: string = '';
-    addCollaborator(){
 
-      console.log("O novo colaborador tem o nome: ", this.nameCollaborator)
+    
+    saveCollaborator(){
+      const userName= this.nameCollaborator + this.functionCollaborator
+      const password = this.passwordCollaborator
+
+      this.collaboratorService.createCollaborator(userName, password ).subscribe({
+        next: (response)=>{
+          console.log("Usuário criando com sucesso", response)
+        },
+        error:(error)=>{
+          console.log("Erro ao criar usuário", error)
+
+        }
+        
+      })
+      
+      console.log(userName, this.passwordCollaborator)
+     
 
     }
 

@@ -52,11 +52,33 @@
         </div>
 
     </div>
-    <div class="add-collaborator" *ngIf="!OpenWindowAddCollaborator">
-        <div class="d-grid gap-2 d-md-block">
-            <button class="btn btn-primary" type="button" (click)="openWindowCollaborator()">Adicionar colaborador</button>
+    <div class="buttons-collaborator">
+        <div class="add-collaborator" *ngIf="!OpenWindowAddCollaborator">
+            <div class="btn-add-collaborator">
+                <button class="btn btn-primary" type="button" (click)="openWindowCollaborator()">Adicionar colaborador</button>
+            </div>
+        </div>
+        <div class="remove-collaborator" *ngIf="!OpenWindowAddCollaborator">
+            <div class="btn-remove-collaborator">
+                <button class="btn btn-primary" type="button" (click)="openRemoveCollaborator()">Remover colaborador</button>
+            </div>
         </div>
     </div>
+
+
+    <div class="add-collaborator-container box-events" *ngIf="OpenWindowRemoveCollaborator">
+        <div class="close-btn">
+            <button type="button" (click)="closeRemoveCollaborator()"> X</button>
+        </div>
+        <h2>
+            Remover colaborador
+        </h2>
+
+        
+    
+
+    </div>
+    
 
     <div class="add-collaborator-container box-events" *ngIf="OpenWindowAddCollaborator">
         <div class="close-btn">
@@ -66,17 +88,20 @@
             Novo colaborador
         </h2>
         
-        <form (ngSubmit)="addCollaborator()">
+        <form (ngSubmit)="saveCollaborator()">
             <label>Nome:</label>
-            <input type="text" [(ngModel)]="nameCollaborator" name="nome" required />
-          
-            <label>Função:</label><br />
+            <input type="text" placeholder="Ex: Gustavo" [(ngModel)]="nameCollaborator" name="nome" required />
+            
+           <label>Senha:</label>
+           <input type="text"name="senha" placeholder="Ex: 1234" [(ngModel)]="passwordCollaborator" required />
+
+            <label>Função:</label>
             <label>
-              <input type="radio" name="funcao" [(ngModel)]="functionCollaborator" value="@admin"  required />
+              <input type="radio" name="funcao" [(ngModel)]="functionCollaborator" value=".admin"  required />
               Administrador
             </label>
             <label>
-              <input type="radio" name="funcao" [(ngModel)]="functionCollaborator" value="@bartender"  required />
+              <input type="radio" name="funcao" [(ngModel)]="functionCollaborator" value=".barman"  required />
               Bartender
             </label>
           
