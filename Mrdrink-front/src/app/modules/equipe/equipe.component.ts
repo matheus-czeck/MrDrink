@@ -5,6 +5,7 @@ import { GetInformations } from "../../services/serviceEvent/getInformations.ser
 import { AddCollaborator } from "../../services/serviceCollaborators/addCollaborator.service"
 import { FormsModule } from '@angular/forms';
 import { response } from 'express';
+import { SharedTeams } from '../../services/serviceCollaborators/SharedTeams.service';
 
 
 @Component({
@@ -23,13 +24,15 @@ export class EquipeComponent implements OnInit {
 
   constructor(
     private getInformations: GetInformations, 
-    private collaboratorService: AddCollaborator
+    private collaboratorService: AddCollaborator,
+    private  sheredTeams : SharedTeams
   ) {}
 
 
   ngOnInit() {
     this.startUnavaliable()
     this.startConfirmEvents()
+    this.searchingTeam()
 
   }
 
@@ -88,6 +91,33 @@ export class EquipeComponent implements OnInit {
       this.OpenWindowRemoveCollaborator = false
 
     }
+    
+    showDropdown = false
+    toggleDropdown() {
+      this.showDropdown = !this.showDropdown;
+    
+      if (this.teamList.length === 0) {
+        this.searchingTeam();
+      }
+    }
+
+    teamList: any[]=[]
+    searchingTeam(){
+      this.sheredTeams.getTeamList().subscribe({
+        next: (teams)=>{
+          this.teamList = teams
+          console.log("equipes recebidas", this.teamList)
+
+        },error:(err)=>{
+
+          console.error("Erro ao carregar equipe", err)
+        }
+      })
+     
+
+    }
+  
+    
 
     
     nameCollaborator: string = '';

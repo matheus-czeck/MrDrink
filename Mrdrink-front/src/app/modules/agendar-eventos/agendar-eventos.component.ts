@@ -7,7 +7,7 @@ import { EventService } from '../../services/serviceEvent/event.service';
 import { GetInformations } from '../../services/serviceEvent/getInformations.service';
 import { ChangeDetectorRef } from '@angular/core';
 import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
-
+import { SharedTeams } from '../../services/serviceCollaborators/SharedTeams.service';
 
 
 @Component({
@@ -25,6 +25,7 @@ export class AgendarEventosComponent implements OnInit{
     private eventService: EventService, 
     private getInformations: GetInformations,
     private cdr: ChangeDetectorRef,
+    private sharedTeams: SharedTeams
   ){}
   
   infoEvents: FormGroup = new FormGroup ({
@@ -79,24 +80,15 @@ export class AgendarEventosComponent implements OnInit{
   }
 
   searchingTeam() {
-    this.getInformations.getTeamNames().subscribe(
-      (data) => {
-        if (data && data.findNameTeams && data.findNameTeams.length > 0) {
-          this.teamList = data.findNameTeams.map((team: any) => ({ 
-            name: team.userName.split('.')[0],
-            id: team.id
-          }));
-          console.log('Equipes recebidas:', this.teamList);
-          this.cdr.detectChanges();
-        } else {
-          console.log('Nenhuma equipe encontrada');
-        }
+    this.sharedTeams.getTeamList().subscribe({
+      next: (teams)=>{
+        this.teamList = teams
       },
-      (error) => {
-        console.error('Erro ao buscar equipes:', error);
-        this.showNotification('Erro ao buscar equipes.', 'error');
+      error:(err)=>{
+        console.error("Erro ao carregar equipe", err)
+
       }
-    );
+    })
   }
 
   

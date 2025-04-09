@@ -24,7 +24,9 @@
                     <ul>
                         <li class="align" *ngFor="let getEventsData of getEventsData; let i = index">
                             <div class="photo-event">
-                                <span><img src="https://lh6.googleusercontent.com/HJ-Le06mARI2ogOCpU_uUEekr9KsCH42rKqEWeEEEoQ8-lIcHIGX8S58SH7BHDkBKfBCF6Hp8csUDKs8j3J7V1tWY5FdrqamZzcZS3pfpkcu1dRJeK_0kcRggGgHcJFbwkvBejo5rqrQab9uX8LQu04" alt=""></span>
+                                <span><img
+                                        src="https://lh6.googleusercontent.com/HJ-Le06mARI2ogOCpU_uUEekr9KsCH42rKqEWeEEEoQ8-lIcHIGX8S58SH7BHDkBKfBCF6Hp8csUDKs8j3J7V1tWY5FdrqamZzcZS3pfpkcu1dRJeK_0kcRggGgHcJFbwkvBejo5rqrQab9uX8LQu04"
+                                        alt=""></span>
                             </div>
                             <div class="informations-event">
                                 <div class="child">
@@ -40,14 +42,14 @@
                                 </div>
                                 <div class="child">
                                     <ng-container *ngFor="let team of getEventsData.selectedTeams.split(',')">
-                                        <span  class="avaliable"></span> {{ team }}
-                                      </ng-container>
+                                        <span class="avaliable"></span> {{ team }}
+                                    </ng-container>
                                 </div>
                             </div>
                         </li>
                     </ul>
                 </div>
-                
+
             </div>
         </div>
 
@@ -55,12 +57,14 @@
     <div class="buttons-collaborator">
         <div class="add-collaborator" *ngIf="!OpenWindowAddCollaborator">
             <div class="btn-add-collaborator">
-                <button class="btn btn-primary" type="button" (click)="openWindowCollaborator()">Adicionar colaborador</button>
+                <button class="btn btn-primary" type="button" (click)="openWindowCollaborator()">Adicionar
+                    colaborador</button>
             </div>
         </div>
-        <div class="remove-collaborator" *ngIf="!OpenWindowAddCollaborator">
+        <div class="remove-collaborator" *ngIf="!OpenWindowRemoveCollaborator">
             <div class="btn-remove-collaborator">
-                <button class="btn btn-primary" type="button" (click)="openRemoveCollaborator()">Remover colaborador</button>
+                <button class="btn btn-primary" type="button" (click)="openRemoveCollaborator()">Remover
+                    colaborador</button>
             </div>
         </div>
     </div>
@@ -73,12 +77,41 @@
         <h2>
             Remover colaborador
         </h2>
+        <label>Selecione o colaborador</label>
+        <div class="dropdown" [class.show]="showDropdown">
+            <button
+              class="btn btn-secondary dropdown-toggle w-100"
+              type="button"
+              id="dropdownMenuButton"
+              (click)="toggleDropdown()"
+              [attr.aria-expanded]="showDropdown"
+              
+            >
+              Equipe
+            </button>
+          
+            <ul
+              class="dropdown-menu w-100"
+              [class.show]="showDropdown"
+              aria-labelledby="dropdownMenuButton"
+            >
+              <li *ngFor="let team of teamList; let i = index" class="form-check px-3">
+                <input
+                  id="team-{{ i }}"
+                  class="form-check-input"
+                  type="checkbox"
+                  [value]="team.name"
+                />
+                <label class="form-check-label" for="team-{{ i }}">{{ team.name }}</label>
+              </li>
+            </ul>
+          </div>
 
-        
-    
+
+
 
     </div>
-    
+
 
     <div class="add-collaborator-container box-events" *ngIf="OpenWindowAddCollaborator">
         <div class="close-btn">
@@ -87,26 +120,26 @@
         <h2>
             Novo colaborador
         </h2>
-        
+
         <form (ngSubmit)="saveCollaborator()">
             <label>Nome:</label>
             <input type="text" placeholder="Ex: Gustavo" [(ngModel)]="nameCollaborator" name="nome" required />
-            
-           <label>Senha:</label>
-           <input type="text"name="senha" placeholder="Ex: 1234" [(ngModel)]="passwordCollaborator" required />
+
+            <label>Senha:</label>
+            <input type="text" name="senha" placeholder="Ex: 1234" [(ngModel)]="passwordCollaborator" required />
 
             <label>Função:</label>
             <label>
-              <input type="radio" name="funcao" [(ngModel)]="functionCollaborator" value=".admin"  required />
-              Administrador
+                <input type="radio" name="funcao" [(ngModel)]="functionCollaborator" value=".admin" required />
+                Administrador
             </label>
             <label>
-              <input type="radio" name="funcao" [(ngModel)]="functionCollaborator" value=".barman"  required />
-              Bartender
+                <input type="radio" name="funcao" [(ngModel)]="functionCollaborator" value=".barman" required />
+                Bartender
             </label>
-          
+
             <button type="submit">Adicionar Colaborador</button>
-          </form>
+        </form>
 
     </div>
 </app-mainTemplate>
