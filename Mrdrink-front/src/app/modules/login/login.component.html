@@ -1,32 +1,53 @@
 <div class="image-ground">
-
   <div class="formContainer">
     <span class="image-mrdrink"></span>
 
-    <form nz-form [nzLayout]="'inline'" (ngSubmit)="onLogin()">
+    <form nz-form [nzLayout]="'vertical'" (ngSubmit)="onLogin()">
       <nz-form-item>
-        <nz-form-control nzErrorTip="Please input your username!">
-          <nz-input-group nzPrefixIcon="user">
-            <input nz-input placeholder="username" [(ngModel)]="userName" name="userName" id="userName" required />
+        <nz-form-control nzErrorTip="Por favor, insira seu usuário!">
+          <nz-input-group [nzPrefix]="userIcon">
+            <input 
+              nz-input 
+              placeholder="Usuário" 
+              [(ngModel)]="userName" 
+              name="userName" 
+              id="userName" 
+              required />
           </nz-input-group>
+          <ng-template #userIcon>
+            <nz-icon nzType="user" nzTheme="outline"></nz-icon>
+          </ng-template>
         </nz-form-control>
       </nz-form-item>
+
       <nz-form-item>
-        <nz-form-control nzErrorTip="Please input your Password!">
-          <nz-input-group nzPrefixIcon="lock">
-            <input nz-input type="password" placeholder="Password" id="password" [(ngModel)]="password" name="password"
-              required>
+        <nz-form-control nzErrorTip="Por favor, insira sua senha!">
+          <nz-input-group [nzPrefix]="lockIcon">
+            <input 
+              nz-input 
+              type="password" 
+              placeholder="Senha" 
+              [(ngModel)]="password" 
+              name="password" 
+              id="password" 
+              required />
           </nz-input-group>
+          <ng-template #lockIcon>
+            <nz-icon nzType="lock" nzTheme="outline"></nz-icon>
+          </ng-template>
         </nz-form-control>
       </nz-form-item>
+
       <nz-form-item>
         <nz-form-control>
           <button nz-button nzType="primary">Entrar</button>
         </nz-form-control>
       </nz-form-item>
+
       <div class="forgot-password">
         <span>
-          Esqueceu sua senha? <a>clique aqui.</a> </span>
+          Esqueceu sua senha? <a href="#">clique aqui.</a>
+        </span>
       </div>
     </form>
   </div>

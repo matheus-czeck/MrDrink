@@ -77,38 +77,18 @@
         <h2>
             Remover colaborador
         </h2>
-        <label>Selecione o colaborador</label>
-        <div class="dropdown" [class.show]="showDropdown">
-            <button
-              class="btn btn-secondary dropdown-toggle w-100"
-              type="button"
-              id="dropdownMenuButton"
-              (click)="toggleDropdown()"
-              [attr.aria-expanded]="showDropdown"
-              
-            >
-              Equipe
+
+        <div class="form-remove">
+            <select id="collaboratorSelect" [(ngModel)]="selectedCollaborator">
+                <option value="" disabled> Selecione o colaborador </option>
+                <option *ngFor="let team of teamList" [value]="team.id">
+                    {{ team.name }}
+                </option>
+            </select>
+            <button class="remove-button" (click)="removeCollaborator()" [disabled]="!selectedCollaborator">
+                Remover colaborador
             </button>
-          
-            <ul
-              class="dropdown-menu w-100"
-              [class.show]="showDropdown"
-              aria-labelledby="dropdownMenuButton"
-            >
-              <li *ngFor="let team of teamList; let i = index" class="form-check px-3">
-                <input
-                  id="team-{{ i }}"
-                  class="form-check-input"
-                  type="checkbox"
-                  [value]="team.name"
-                />
-                <label class="form-check-label" for="team-{{ i }}">{{ team.name }}</label>
-              </li>
-            </ul>
-          </div>
-
-
-
+        </div>
 
     </div>
 

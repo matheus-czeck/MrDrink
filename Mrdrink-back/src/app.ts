@@ -9,7 +9,7 @@ import getInformations from "./routes/GetInformations.routes"
 import scheduleEvents from "./routes/scheduleEvents.routes"
 import  getTeamsNames  from './routes/getTeamNames.routes';
 import addCollaborator from './routes/addCollaborator.routes'
-
+import deleteCollaborator from './routes/deleteCollaborator.route'
 dotenv.config();
 
 
@@ -29,6 +29,7 @@ app.use("/events", scheduleEvents)
 app.use("/eventos", getInformations );
 app.use("/teams", getTeamsNames );
 app.use("/addCollaborator", addCollaborator );
+app.use("/deleteCollaborator", deleteCollaborator  );
 
 sequelize
  .sync({alter: true})

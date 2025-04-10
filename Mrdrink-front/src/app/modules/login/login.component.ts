@@ -12,6 +12,7 @@ import {UserOutline, LockOutline} from "@ant-design/icons-angular/icons"
 
 @Component({
   selector: 'app-login',
+  standalone: true, // <- isso aqui é essencial
   imports: [
     RouterModule,
     NzButtonModule,
@@ -19,21 +20,17 @@ import {UserOutline, LockOutline} from "@ant-design/icons-angular/icons"
     NzInputModule,
     FormsModule,
     NzIconModule
-
-
   ],
-  providers:[
+  providers: [
     {
-      provide:NZ_ICONS,
-      useValue:[UserOutline, LockOutline]
-
-
-    },
-
+      provide: NZ_ICONS,
+      useValue: [UserOutline, LockOutline]
+    }
   ],
   templateUrl: './login.component.html',
-  styleUrl: './login.component.scss'
+  styleUrl: './login.component.scss' // <-- aqui também tá com erro
 })
+
 export class LoginComponent {
   userName: string = "";
   password: string = "";

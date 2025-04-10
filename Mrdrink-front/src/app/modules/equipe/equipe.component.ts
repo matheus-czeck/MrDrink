@@ -4,9 +4,9 @@ import { MainTemplate } from '../mainTemplate/mainTemplate.component';
 import { GetInformations } from "../../services/serviceEvent/getInformations.service"
 import { AddCollaborator } from "../../services/serviceCollaborators/addCollaborator.service"
 import { FormsModule } from '@angular/forms';
-import { response } from 'express';
 import { SharedTeams } from '../../services/serviceCollaborators/SharedTeams.service';
-
+import { deleteCollaborator } from '../../services/serviceCollaborators/DeleteCollaborator.service';
+import { NzMessageService} from 'ng-zorro-antd/message'
 
 @Component({
   selector: 'app-equipe',
@@ -25,7 +25,10 @@ export class EquipeComponent implements OnInit {
   constructor(
     private getInformations: GetInformations, 
     private collaboratorService: AddCollaborator,
-    private  sheredTeams : SharedTeams
+    private  sheredTeams: SharedTeams,
+    private DeleteCollaborator:deleteCollaborator,
+    private message: NzMessageService
+    
   ) {}
 
 
@@ -92,16 +95,31 @@ export class EquipeComponent implements OnInit {
 
     }
     
-    showDropdown = false
-    toggleDropdown() {
-      this.showDropdown = !this.showDropdown;
-    
-      if (this.teamList.length === 0) {
-        this.searchingTeam();
-      }
-    }
+
 
     teamList: any[]=[]
+    selectedCollaborator: string = ''
+
+    removeCollaborator(){
+      if (!this.selectedCollaborator) return;
+
+      this.DeleteCollaborator.removeCollaborator(this.selectedCollaborator).subscribe({
+
+        next: ()=>{
+          console.log("Colaborador removido com sucesso!");
+          this.message.success("Colaborador removido com sucesso!")
+          this.searchingTeam();
+          this.selectedCollaborator = "";
+
+        }, 
+        error: (err)=>{
+          this.message.error("Erro ao remover colaborador. Tente novamente")
+          console.log("Erro ao remover colaborador:", err)
+
+        }
+      })
+    }
+
     searchingTeam(){
       this.sheredTeams.getTeamList().subscribe({
         next: (teams)=>{
@@ -131,10 +149,11 @@ export class EquipeComponent implements OnInit {
 
       this.collaboratorService.createCollaborator(userName, password ).subscribe({
         next: (response)=>{
-          console.log("Usuário criando com sucesso", response)
+          this.message.success("Colaborador criado com sucesso!")
         },
         error:(error)=>{
           console.log("Erro ao criar usuário", error)
+          this.message.error("Erro ao implementar colaborador, tente novamente")
 
         }
         

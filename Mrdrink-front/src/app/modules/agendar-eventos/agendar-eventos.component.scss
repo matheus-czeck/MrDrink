@@ -5,7 +5,7 @@
  flex-direction: row;
  margin-top: 3rem;
  gap: 10px;
- background-color: rgba(255, 255, 255, 0.514);
+ background-color:  rgba(46, 46, 46, 0.5);
  padding: 1rem;
  border-radius: 10px;
 
@@ -75,7 +75,7 @@ select:hover {
 
 }
 .calendar-container {
-    background-color: rgba(255, 255, 255, 0.514);
+    background-color: rgba(46, 46, 46, 0.5);
     
     padding: 2rem .5rem;
     flex-wrap: wrap;
@@ -87,8 +87,9 @@ select:hover {
   
   .month {
     padding: 10px;
-    border: 1px solid black;
-    background-color: rgba(255, 255, 255, 0.822);
+    border: 1px solid red;
+    color: white;
+    background-color: rgba(34, 34, 34, 0.548);
     border-radius: 8px;
     text-align: center;
   }
@@ -97,11 +98,11 @@ select:hover {
     display: grid;
     grid-template-columns: repeat(7, 1fr);
     row-gap: 0px;
+    color: white;
 
     span{
-        border: 1px solid rgb(167, 167, 167);
+        border: 1px solid white;
         padding: 4px;
-        
 
     }
   }
@@ -115,6 +116,7 @@ select:hover {
   
   .week-day {
     text-align: center;
+    color: white;
   }
   
   .highlighted-confirmed {
@@ -134,13 +136,15 @@ select:hover {
 
 .filter-color{
     border: none;
+    background-color: rgba(206, 0, 0, 0.973);
+    color: white;
     
 
 }
 .filter-color:disabled{
     border: 1px solid black;
-    background-color: lightgray;
-    color: rgb(134, 134, 134);
+    background-color: rgba(20, 20, 20, 0.836);
+    color: rgba(122, 122, 122, 0.856);
     
 
 }
