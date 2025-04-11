@@ -19,33 +19,94 @@
 }
 .form-control{
     padding: 1rem;
+    background-color: #414141;
+    border: 1px solid red;
+    color: white;
+    
 }
+
+
 
 .input-group span{
     height: 58px;
+    background-color: #414141;
+    border: 1px solid red;
+    color: white;
 }
 .form-select, .dropdown-toggle{
     height: 58px;
+    background-color: #414141;
+    border: 1px solid red;
+    color: white;
 }
+.dropdown-menu {
+  background-color:#414141 ;
+
+}
+.label-data-evento{
+  color: white !important;
+  font-weight: 400 !important;
+}
+
+.form-floating > label::before,
+.form-floating > label::after {
+  display: none !important;
+
+}
+
+
+input[type="date"]::-webkit-calendar-picker-indicator {
+  filter: invert(1); 
+}
+
+
+
 
 
 button{
     background-color: white;
     color: black;
+    
 }
 button:hover,
 input:hover{
-    background-color: rgba(255, 255, 255, 0.767);
-    color: black;
+    background-color: rgb(75, 75, 75);;
 }
 
 .btn-outline-primary {
     border-radius: 0 10px 10px 0;
-    border-color: transparent;
+    border: 1px solid red;
+    color:white;
+}
+label {
+  color: white;
+
 }
 
+.btn-confirm{
+  background-color: red;
+  border: none;
+  color: white;
+}
+.btn-confirm:hover{
+  background-color: rgba(197, 0, 0, 0.884);
+}
+
+.btn-agend{
+  background-color: #ffc107;
+  border: none;
+  color: white;
+}
+.btn-agend:hover{
+  background-color: #ce9a00;
+  border: none;
+  color: white;
+}
+
+
+
 select:hover {
-    background-color: rgba(255, 255, 255, 0.767);
+  background-color: rgb(75, 75, 75);
 }
 
 .d-grid{
@@ -89,7 +150,7 @@ select:hover {
     padding: 10px;
     border: 1px solid red;
     color: white;
-    background-color: rgba(34, 34, 34, 0.548);
+    background-color: rgba(34, 34, 34, 0.932);
     border-radius: 8px;
     text-align: center;
   }
@@ -136,15 +197,15 @@ select:hover {
 
 .filter-color{
     border: none;
-    background-color: rgba(206, 0, 0, 0.973);
-    color: white;
+    background-color: rgba(20, 20, 20, 0.836);
+    color: rgba(122, 122, 122, 0.856);
     
 
 }
 .filter-color:disabled{
     border: 1px solid black;
-    background-color: rgba(20, 20, 20, 0.836);
-    color: rgba(122, 122, 122, 0.856);
+    background-color:  rgba(206, 0, 0, 0.973);
+    color: white;
     
 
 }

@@ -36,6 +36,11 @@
         list-style-type: none;
 
     }
+    ul {
+        border-radius: 10px;
+        border: 1px solid red;
+        
+    }
 
 
     .add-collaborator {
@@ -101,6 +106,7 @@
     ul {
         list-style-type: none;
         max-height: 500px;
+        
 
     }
 
@@ -109,11 +115,9 @@
         flex-wrap: wrap;
         flex-direction: row;
         justify-content: space-evenly;
-        background-color: rgba(110, 110, 110, 0.103);
-
-
-
+        background-color: rgba(0, 0, 0, 0.322);
         border-radius: 15px;
+        border: 1px solid red;
         margin: 1rem 0;
         padding: .5rem .5rem;
 
@@ -134,7 +138,7 @@
     }
 
     .informations-event {
-        background-color: rgba(0, 0, 0, 0.322);
+        
         border-radius: 15px;
         padding: .8rem 0;
         display: flex;
@@ -200,17 +204,17 @@
     }
 
     input {
+        background-color: #414141;
         border: none;
         border-radius: 10px;
         margin-bottom: 1.5rem;
-        background-color: rgba(255, 255, 255, 0.973);
         padding: 5px 10px;
     }
 
     button[type="submit"] {
         border: none;
         border-radius: 10px;
-        background-color: rgba(34, 34, 34, 0.548);
+        background-color:  #414141;;
         color: red;
     }
 
