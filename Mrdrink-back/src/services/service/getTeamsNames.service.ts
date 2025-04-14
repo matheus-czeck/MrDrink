@@ -5,7 +5,7 @@ import { Request,Response } from "express"
 export const getTeamNames = async (req: Request, res:Response) =>{
     try{
         const findNameTeams = await User.findAll({
-            attributes: ["id", "userName"],
+            attributes: ["id", "userName", "isAvaliable"],
             where: {
                 userName: {
                     [Op.like]: "%barman%"

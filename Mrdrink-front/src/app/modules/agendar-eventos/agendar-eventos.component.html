@@ -104,6 +104,25 @@
                 </div>
             </div>
         </form>
+        <div *ngIf="!openAndCloseCancelEvent">
+            <button class="btn btn-primary btn-cancel" type="button" (click)="openWindowCancelEvent()">Cancelar Evento</button>
+        </div>
+
+        <div *ngIf="openAndCloseCancelEvent" class="cancel-event">
+            <div class="container-close-btn">
+                <button (click)="closeCancelEvent()" class="close-btn" type="button">X</button>
+            </div>
+            
+            <h3>Selecione o evento a ser cancelado</h3>
+
+            <select name="cancelEvent">
+                <option value="">eventos</option>
+                <option value="">eventos</option>
+            </select>
+            
+            
+        </div>
+       
     </div>
 
 

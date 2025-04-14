@@ -54,6 +54,16 @@ export class AgendarEventosComponent implements OnInit{
      this.selectedYear = year
      this.loadEvents(year)
     }
+
+    openAndCloseCancelEvent = false
+    openWindowCancelEvent(){
+      this.openAndCloseCancelEvent = true
+
+
+    }
+    closeCancelEvent(){
+      this.openAndCloseCancelEvent = false
+    }
     
     
   loadEvents(year: number) {

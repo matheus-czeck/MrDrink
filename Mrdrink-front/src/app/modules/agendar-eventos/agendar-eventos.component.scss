@@ -63,15 +63,6 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 
 
 
-button{
-    background-color: white;
-    color: black;
-    
-}
-button:hover,
-input:hover{
-    background-color: rgb(75, 75, 75);;
-}
 
 .btn-outline-primary {
     border-radius: 0 10px 10px 0;
@@ -223,6 +214,19 @@ select:hover {
   .snackbar-warning {
     background-color: #ffc107 !important;
     color: black;
+  }
+
+  .cancel-event{
+    display: flex;
+    background-color:  rgba(46, 46, 46, 0.5);
+    margin: 1.2rem 0;
+    padding: .5rem;
+    border-radius: 10px;    
+    h3{
+      color: white;
+    }
+
+
   }
   
 

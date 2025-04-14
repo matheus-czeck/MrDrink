@@ -5,6 +5,7 @@ export class User extends Model {
     public id!: number;
     public userName!: string;
     public password!: string;
+    public isAvaliable!: boolean;
 }
 
 User.init({
@@ -23,6 +24,13 @@ User.init({
             allowNull: false,
 
         },
+        isAvaliable:{
+            type: DataTypes.BOOLEAN,
+            allowNull:false,
+            defaultValue: false,
+
+        },
+        
         createdAt: {
             type: DataTypes.DATE,
 
