@@ -10,6 +10,7 @@ import scheduleEvents from "./routes/scheduleEvents.routes"
 import  getTeamsNames  from './routes/getTeamNames.routes';
 import addCollaborator from './routes/addCollaborator.routes'
 import deleteCollaborator from './routes/deleteCollaborator.route'
+import  deleteEvent  from './routes/deleteEvent.routes';
 dotenv.config();
 
 
@@ -25,7 +26,8 @@ next();
 
 app.use('/auth', authRoutes);
 app.use("/events", confirmEvent)
-app.use("/events", scheduleEvents)
+app.use("/events", scheduleEvents);
+app.use("/events", deleteEvent);
 app.use("/eventos", getInformations );
 app.use("/teams", getTeamsNames );
 app.use("/addCollaborator", addCollaborator );

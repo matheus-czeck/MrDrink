@@ -8,7 +8,7 @@ import { GetInformations } from '../../services/serviceEvent/getInformations.ser
 import { ChangeDetectorRef } from '@angular/core';
 import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 import { SharedTeams } from '../../services/serviceCollaborators/SharedTeams.service';
-
+import { NzMessageService} from 'ng-zorro-antd/message'
 
 @Component({
   selector: 'app-agendar-eventos',
@@ -25,7 +25,8 @@ export class AgendarEventosComponent implements OnInit{
     private eventService: EventService, 
     private getInformations: GetInformations,
     private cdr: ChangeDetectorRef,
-    private sharedTeams: SharedTeams
+    private sharedTeams: SharedTeams,
+    private message: NzMessageService
   ){}
   
   infoEvents: FormGroup = new FormGroup ({
@@ -83,11 +84,48 @@ export class AgendarEventosComponent implements OnInit{
             : "schedule"
           }));
 
+          this.nameCoupleRemoveEvent = allEvents
+          .filter(event => event.nameCouple)
+          .map(event=> {
+              const date = new Date(event.dateEvent)
+              const formattedDate = date.toLocaleDateString("pt-BR")
+              return `${event.nameCouple} - ${formattedDate}`
+          })
+
         console.log('Eventos destacados:', this.highlightedDates);
+        console.log('casal capturado:', this.nameCoupleRemoveEvent);
       },
       () => (this.highlightedDates = [])
     );
   }
+
+  nameCoupleRemoveEvent: any []= []
+
+  selectedEvent:string = ""
+
+  cancelEvent(){
+      const [nameCouple, dateEvent] = this.selectedEvent.split(' - ')
+      const eventtoDelete = {
+        nameCouple: nameCouple.trim(),
+      }
+      console.log("Nome e data recebidos:",nameCouple )
+
+    this.eventService.deleteEvent(nameCouple).subscribe({
+      next: (resp)=>{
+        this.message.success("Evento removido com sucesso!")
+        console.log("Evento cancelado com sucesso!")
+
+
+      }, error:(err)=>{
+        this.message.error("Erro ao remover evento, tente novamente...")
+        console.log("erro ao remover colaborador")
+
+      }
+    })
+
+
+  }
+
 
   searchingTeam() {
     this.sharedTeams.getTeamList().subscribe({
@@ -107,27 +145,19 @@ export class AgendarEventosComponent implements OnInit{
 
     this.eventService.createEvent(eventData).subscribe({
       next: (response)=>{
-        setTimeout(() => {
-          this.showNotification('Evento confirmado com sucesso!', "success")
-        }, 500)
+        this.message.success("Evento confirmado com sucesso!")
 
         console.log("Evento confirmado com sucesso", response);
       },
       error: (error)=>{
         console.error("Erro ao confirmar evento:", error)
-        this.showNotification('Erro ao confirmar evento.', 'error');
+        this.message.error("Erro ao confirmar evento, tente novamente...")
       }
     })
 
   }
 
-  showNotification(menssage: string, type: "success" | "error" | "warning"){
-    this.snackBar.open(menssage, 'Fechar',{
-      duration: 3000,
-      panelClass: `snackbar-${type}`
-    })
-
-  }
+  
 
   scheduleEvent() {
     const eventData = this.infoEvents.value
@@ -136,12 +166,12 @@ export class AgendarEventosComponent implements OnInit{
     this.eventService.scheduleEvent(eventData).subscribe({
       next: (response) =>{
         console.log("Evento agendado com sucesso", response)
-        this.showNotification('Evento agendado com sucesso!', 'success');
+        this.message.success("Evento agendado com sucesso!")
 
       },
       error: (error)=>{
         console.log("Erro ao agendar evento:", error)
-        this.showNotification('Erro ao agendar evento.', 'error');
+        this.message.error("Erro ao agendar evento, tente novamente...")
 
       }
   })
@@ -179,6 +209,8 @@ export class AgendarEventosComponent implements OnInit{
 
 
   highlightedDates: any [] = [];
+
+ 
   
 
 
