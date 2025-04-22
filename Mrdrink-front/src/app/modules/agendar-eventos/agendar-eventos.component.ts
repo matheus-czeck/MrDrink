@@ -39,10 +39,14 @@ export class AgendarEventosComponent implements OnInit{
     selectedTeams: new FormArray([]),
   })
     menuList = [ 
-      {name:"Special" },
-      {name:"Special Plus"},
-      {name:"Premium" },
-      {name:"Premium Plus"},
+      {name:"Clássico Médio" },
+      {name:"Clássico Master" },
+      {name:"Especial Médio"},
+      {name:"Especial Master"},
+      {name:"Premium Médio" },
+      {name:"Premium Master" },
+      {name:"Premium Gold Médio"},
+      {name:"Premium Gold Master"},
 
     ]
     teamList: any[] = [];
