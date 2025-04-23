@@ -7,21 +7,26 @@
             <div class="confirm-menu">
                 <h3>Selecione o casal</h3>
                 <div class="form-floating">
-                    <select class="form-control" id="floatingInputGroup1" placeholder="Nome do casal">
-                        <option *ngFor="let couple of receivedNames"  [value]="couple">{{couple}}</option>
+                    <select class="form-control" id="floatingInputGroup1" placeholder="Nome do casal"
+                        (change)="onCoupleChange()" [(ngModel)]="selectedCouple">
+                        <option *ngFor="let couple of receivedNames" [value]="couple">{{couple}}</option>
                     </select>
                     <label for="floatingInputGroup1">Nome do casal</label>
                 </div>
 
             </div>
-            <div class="menu">
-
+            <div class="menu" *ngIf="selectedMenuItems.length"> 
+                <h3>{{nameMenu}}</h3>
+                <ul>
+                    <li *ngFor="let item of selectedMenuItems">{{item}}</li>
+                </ul>
+                
             </div>
             <div class="btn-menu">
                 <div class="d-grid gap-2 d-md-block">
                     <button class="btn btn-primary" type="button">Editar</button>
                     <button class="btn btn-primary" type="button">Confirmar</button>
-                  </div>
+                </div>
             </div>
         </div>
         <div class="checklist-container">
@@ -57,12 +62,12 @@
                 </div>
             </div>
 
-            
+
             <div class="btn-checklist">
                 <div class="d-grid gap-2 d-md-block">
                     <button class="btn btn-primary" type="button">Editar</button>
                     <button class="btn btn-primary" type="button">Confirmar</button>
-                  </div>
+                </div>
             </div>
         </div>
     </div>
