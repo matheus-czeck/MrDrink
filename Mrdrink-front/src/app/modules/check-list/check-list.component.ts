@@ -49,8 +49,30 @@ export class CheckListComponent implements OnInit {
 
   selectedCouple = ""
   selectedMenuItems: string[] = []
-  nameMenu:string  = ""
+  newItem =''
+  nameMenu: string = ""
   selectedInvestimentoItems: string[] = []
+
+  isEditing = false 
+  
+  addItem() {
+  const item = this.newItem.trim();
+  if (item && !this.selectedMenuItems.includes(item)) {
+    this.selectedMenuItems.push(item);
+    this.newItem = '';
+  }
+}
+
+removeItem(index: number) {
+  this.selectedMenuItems.splice(index, 1);
+}
+
+saveMenuChanges() {
+  this.isEditing = false;
+  console.log('Novo cardápio salvo:', this.selectedMenuItems);
+  // Aqui você pode atualizar no backend se quiser
+}
+
   onCoupleChange() {
 
     const completMenu = this.menuMapByCouple[this.selectedCouple]?.toLowerCase() || "";
@@ -59,7 +81,7 @@ export class CheckListComponent implements OnInit {
 
 
     let menuKey = "";
-    if (completMenu.includes("classico")) menuKey = "classico";
+    if (completMenu.includes("clássico")) menuKey = "classico";
     else if (completMenu.includes("especial")) menuKey = "especial";
     else if (completMenu.includes("premium") && isGold) menuKey = "premiumGold";
     else if (completMenu.includes("premium")) menuKey = "premium";
@@ -85,9 +107,6 @@ export class CheckListComponent implements OnInit {
 
     this.selectedMenuItems = contentMenu ?? [];
     this.selectedInvestimentoItems = conteudoInvestimento ?? [];
-
-
-
 
 
 

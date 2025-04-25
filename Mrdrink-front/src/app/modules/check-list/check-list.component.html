@@ -1,74 +1,116 @@
 <app-mainTemplate>
-    <div class="welcome">
-        <h1>Check-List</h1>
-    </div>
-    <div class="content">
-        <div class="choose-menu">
-            <div class="confirm-menu">
-                <h3>Selecione o casal</h3>
-                <div class="form-floating">
-                    <select class="form-control" id="floatingInputGroup1" placeholder="Nome do casal"
-                        (change)="onCoupleChange()" [(ngModel)]="selectedCouple">
-                        <option *ngFor="let couple of receivedNames" [value]="couple">{{couple}}</option>
-                    </select>
-                    <label for="floatingInputGroup1">Nome do casal</label>
-                </div>
+  <div class="welcome">
+    <h1>Check-List</h1>
+  </div>
 
-            </div>
-            <div class="menu" *ngIf="selectedMenuItems.length"> 
-                <h3>{{nameMenu}}</h3>
-                <ul>
-                    <li *ngFor="let item of selectedMenuItems">{{item}}</li>
-                </ul>
-                
-            </div>
-            <div class="btn-menu">
-                <div class="d-grid gap-2 d-md-block">
-                    <button class="btn btn-primary" type="button">Editar</button>
-                    <button class="btn btn-primary" type="button">Confirmar</button>
-                </div>
-            </div>
+  <div class="content">
+    <div class="choose-menu">
+      <div class="confirm-menu">
+        <h3>Selecione o casal</h3>
+        <div class="form-floating">
+          <select
+            class="form-control"
+            id="floatingInputGroup1"
+            placeholder="Nome do casal"
+            (change)="onCoupleChange()"
+            [(ngModel)]="selectedCouple"
+          >
+            <option *ngFor="let couple of receivedNames" [value]="couple">
+              {{ couple }}
+            </option>
+          </select>
+          <label for="floatingInputGroup1">Nome do casal</label>
         </div>
-        <div class="checklist-container">
-            <div class="checklist">
-                <div class="utensils">
-                    <ul>
-                        <li></li>
-                        <li></li>
-                        <li></li>
-                        <li></li>
-                        <li></li>
-
-                    </ul>
-                </div>
-                <div class="fruits">
-                    <ul>
-                        <li></li>
-                        <li></li>
-                        <li></li>
-                        <li></li>
-                        <li></li>
-
-                    </ul>
-                </div>
-                <div class="drinks">
-                    <ul>
-                        <li></li>
-                        <li></li>
-                        <li></li>
-                        <li></li>
-                        <li></li>
-                    </ul>
-                </div>
-            </div>
-
-
-            <div class="btn-checklist">
-                <div class="d-grid gap-2 d-md-block">
-                    <button class="btn btn-primary" type="button">Editar</button>
-                    <button class="btn btn-primary" type="button">Confirmar</button>
-                </div>
-            </div>
-        </div>
+      </div>
+    <div class="title">
+        <h2>Cardápio</h2>
     </div>
+      <div class="menu" *ngIf="selectedMenuItems.length">
+        <h3>{{ nameMenu }}</h3>
+        <ul>
+          <li *ngFor="let item of selectedMenuItems; let i = index">
+            <div *ngIf="!isEditing">{{ item }}</div>
+            <div *ngIf="isEditing" class="d-flex align-items-center gap-2">
+              <input [(ngModel)]="selectedMenuItems[i]" class="form-control" />
+              <button
+                type="button"
+                class="btn btn-danger btn-sm"
+                (click)="removeItem(i)"
+              >
+                Remover
+              </button>
+            </div>
+          </li>
+        </ul>
+      </div>
+
+      <div *ngIf="isEditing" class="mt-2">
+        <input
+          [(ngModel)]="newItem"
+          placeholder="Novo item"
+          class="form-control d-inline-block w-auto me-2"
+        />
+        <button class="btn btn-success" (click)="addItem()">Adicionar</button>
+      </div>
+
+      <div class="btn-menu mt-3">
+        <div class="btn">
+          <button
+            class="btn btn-primary"
+            type="button"
+            (click)="isEditing = !isEditing"
+          >
+            {{ isEditing ? 'Cancelar Edição' : 'Editar' }}
+          </button>
+          <button
+            *ngIf="isEditing"
+            class="btn btn-success"
+            type="button"
+            (click)="saveMenuChanges()"
+          >
+            Salvar Alterações
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div class="checklist-container">
+      <div class="checklist">
+        <div class="utensils">
+          <ul>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+          </ul>
+        </div>
+        <div class="fruits">
+          <ul>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+          </ul>
+        </div>
+        <div class="drinks">
+          <ul>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="btn-checklist">
+        <div class="d-grid gap-2 d-md-block">
+          <button class="btn btn-primary" type="button">Editar</button>
+          <button class="btn btn-primary" type="button">Confirmar</button>
+        </div>
+      </div>
+    </div>
+  </div>
 </app-mainTemplate>
