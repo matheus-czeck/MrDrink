@@ -70,7 +70,7 @@ removeItem(index: number) {
 saveMenuChanges() {
   this.isEditing = false;
   console.log('Novo cardápio salvo:', this.selectedMenuItems);
-  // Aqui você pode atualizar no backend se quiser
+
 }
 
   onCoupleChange() {

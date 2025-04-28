@@ -20,11 +20,21 @@
 .confirm-menu {
     h3 {
         color: white;
+        text-align: center;
     }
 
     display: flex;
     flex-direction: column;
     margin-bottom: 1.2rem;
+    select {
+    background-color: #414141;
+    color: white;
+    }
+    label{
+        
+        background-color: transparent !important;
+    }
+    
 
 }
 
@@ -47,6 +57,11 @@ input::placeholder {
 .btn {
     display: flex;
     justify-content: space-between;
+     
+    button{
+        background-color: transparent;
+    }
+   
 }
 
 .menu {

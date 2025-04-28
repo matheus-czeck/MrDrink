@@ -54,11 +54,12 @@
       </div>
 
       <div class="btn-menu mt-3">
-        <div class="btn">
+        <div class="btn" >
           <button
             class="btn btn-primary"
             type="button"
             (click)="isEditing = !isEditing"
+            [disabled]="!selectedCouple"
           >
             {{ isEditing ? 'Cancelar Edição' : 'Editar' }}
           </button>
