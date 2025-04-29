@@ -1,3 +1,15 @@
+.content{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    div {
+        flex:1 1 300px;
+        max-width: 300px;
+    }
+
+   
+}
+
 .choose-menu {
     background-color: rgba(46, 46, 46, 0.5);
     border-radius: 10px;
@@ -5,19 +17,21 @@
     padding: .8rem;
 
 }
-.title{
+
+.title {
     margin: 1.2rem 0;
     text-align: center;
 
-    h2{
-    color: white;
+    h2 {
+        color: white;
 
     }
-    
+
 
 }
 
 .confirm-menu {
+    max-height: 100px;
     h3 {
         color: white;
         text-align: center;
@@ -26,15 +40,23 @@
     display: flex;
     flex-direction: column;
     margin-bottom: 1.2rem;
+
     select {
-    background-color: #414141;
-    color: white;
+        background-color: #414141;
+        color: white;
     }
-    label{
-        
+
+    label {
+        color: white;
         background-color: transparent !important;
     }
-    
+
+
+}
+
+
+.form-floating label::after {
+    background-color: transparent !important;
 
 }
 
@@ -57,11 +79,11 @@ input::placeholder {
 .btn {
     display: flex;
     justify-content: space-between;
-     
-    button{
+
+    button {
         background-color: transparent;
     }
-   
+
 }
 
 .menu {
