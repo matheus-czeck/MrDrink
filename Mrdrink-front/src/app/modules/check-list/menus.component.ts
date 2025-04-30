@@ -41,5 +41,19 @@ export class Menus {
 
     }
     
+    checkList: {[key: string]: string[]}={
+        utensilios:[
+            "Coqueteleira", "Colheres bailarina/açucar/morango",
+            "Raladores", "Tapetes","Pegadores", "Dosadores", "Recipientes açucar/ frutas"
+        ],
+
+        frutas: [
+            "Morango", "Limão"
+        ],
+        bebidas:[
+            "Gin", "Vodka", "Aperol"
+        ]
+    }
+    
 
 }

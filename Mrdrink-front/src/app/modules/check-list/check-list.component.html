@@ -18,7 +18,6 @@
         </div>
       </div>
 
-      <!-- TUDO ABAIXO FICA CONDICIONADO À ESCOLHA DO CASAL -->
       <div *ngIf="selectedCouple">
         <div class="title">
           <h2>Cardápio</h2>
@@ -63,29 +62,25 @@
       <div class="checklist">
         <div class="utensils">
           <ul>
-            <li></li>
-            <li></li>
-            <li></li>
-            <li></li>
-            <li></li>
+            <li *ngFor="let item of checkListItems; let i = index">
+              {{item}}
+            </li>
           </ul>
         </div>
         <div class="fruits">
           <ul>
-            <li></li>
-            <li></li>
-            <li></li>
-            <li></li>
-            <li></li>
+            <li *ngFor="let item of frutasListItems; let i = index">
+              {{item}}
+            </li>
+            
           </ul>
         </div>
         <div class="drinks">
           <ul>
-            <li></li>
-            <li></li>
-            <li></li>
-            <li></li>
-            <li></li>
+            <li *ngFor="let item of bebidasListItems; let i = index">
+              {{item}}
+            </li>
+            
           </ul>
         </div>
       </div>

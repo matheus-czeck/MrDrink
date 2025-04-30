@@ -23,6 +23,7 @@ export class CheckListComponent implements OnInit {
 
   ngOnInit() {
     this.buildMenu()
+    this.generateChecklist()
   }
 
 
@@ -112,7 +113,20 @@ saveMenuChanges() {
 
   }
 
+  checkListItems: string[] = []
+  bebidasListItems: string[] = []
+  frutasListItems: string[] = []
 
+  generateChecklist(){
+
+    this.checkListItems = this.menus.checkList["utensilios"] ?? []
+    this.bebidasListItems = this.menus.checkList["bebidas"] ?? []
+    this.frutasListItems = this.menus.checkList["frutas"] ?? []
+   
+
+    
+
+  }
 
 
 
