@@ -61,36 +61,60 @@
     <div class="checklist-container">
       <div class="checklist">
         <div class="utensils">
+          <h4>Utensílios</h4>
           <ul>
             <li *ngFor="let item of checkListItems; let i = index">
-              {{item}}
+              <div>
+                <span *ngIf="!isEditing">{{ item }}</span>
+              <input *ngIf="isEditing" [(ngModel)]="checkListItems[i]" />
+              <button *ngIf="isEditing" type="button" class="btn btn-danger btn-sm" (click)="removeChecklistItem(i)">
+                Remover
+              </button>
+              </div>
             </li>
           </ul>
+          <div *ngIf="isEditing" class="mt-2">
+            <input [(ngModel)]="newChecklistItem" placeholder="Novo item" class="form-control d-inline-block w-auto me-2" />
+            <button class="btn btn-success" (click)="addChecklist()">Adicionar</button>
+          </div>
         </div>
+
         <div class="fruits">
+          <h4>Frutas</h4>
           <ul>
             <li *ngFor="let item of frutasListItems; let i = index">
-              {{item}}
+              <span *ngIf="!isEditing">{{ item }}</span>
+              <input *ngIf="isEditing" [(ngModel)]="frutasListItems[i]" />
+              <button *ngIf="isEditing" type="button" class="btn btn-danger btn-sm" (click)="removeChecklistItem(i)">
+                Remover
+              </button>
             </li>
-            
           </ul>
+          <div *ngIf="isEditing" class="mt-2">
+            <input [(ngModel)]="newChecklistItem" placeholder="Novo item" class="form-control d-inline-block w-auto me-2" />
+            <button class="btn btn-success" (click)="addChecklist()">Adicionar</button>
+          </div>
         </div>
+
         <div class="drinks">
+          <h4>Bebidas</h4>
           <ul>
             <li *ngFor="let item of bebidasListItems; let i = index">
-              {{item}}
+              <span *ngIf="!isEditing">{{ item }}</span>
+              <input *ngIf="isEditing" [(ngModel)]="bebidasListItems[i]" />
+              <button *ngIf="isEditing" type="button" class="btn btn-danger btn-sm" (click)="removeChecklistItem(i)">
+                Remover
+              </button>
             </li>
-            
           </ul>
+           <div *ngIf="isEditing" class="mt-2">
+            <input [(ngModel)]="newChecklistItem" placeholder="Novo item" class="form-control d-inline-block w-auto me-2" />
+            <button class="btn btn-success" (click)="addChecklist()">Adicionar</button>
+          </div>
         </div>
       </div>
 
-      <div class="btn-checklist">
-        <div class="d-grid gap-2 d-md-block">
-          <button class="btn btn-primary" type="button">Editar</button>
-          <button class="btn btn-primary" type="button">Confirmar</button>
-        </div>
-      </div>
+
     </div>
   </div>
 </app-mainTemplate>

@@ -50,29 +50,29 @@ export class CheckListComponent implements OnInit {
 
   selectedCouple = ""
   selectedMenuItems: string[] = []
-  newItem =''
+  newItem = ''
   nameMenu: string = ""
   selectedInvestimentoItems: string[] = []
 
-  isEditing = false 
-  
+  isEditing = false
+
   addItem() {
-  const item = this.newItem.trim();
-  if (item && !this.selectedMenuItems.includes(item)) {
-    this.selectedMenuItems.push(item);
-    this.newItem = '';
+    const item = this.newItem.trim();
+    if (item && !this.selectedMenuItems.includes(item)) {
+      this.selectedMenuItems.push(item);
+      this.newItem = '';
+    }
   }
-}
 
-removeItem(index: number) {
-  this.selectedMenuItems.splice(index, 1);
-}
+  removeItem(index: number) {
+    this.selectedMenuItems.splice(index, 1);
+  }
 
-saveMenuChanges() {
-  this.isEditing = false;
-  console.log('Novo cardápio salvo:', this.selectedMenuItems);
+  saveMenuChanges() {
+    this.isEditing = false;
+    console.log('Novo cardápio salvo:', this.selectedMenuItems);
 
-}
+  }
 
   onCoupleChange() {
 
@@ -116,17 +116,59 @@ saveMenuChanges() {
   checkListItems: string[] = []
   bebidasListItems: string[] = []
   frutasListItems: string[] = []
+  quantidadeItems: number = 0
 
-  generateChecklist(){
+  editando = false
+  quantidades: {
+    utensilios: number[];
+    bebidas: number[];
+    frutas: number[];
+  } = {
+      utensilios: [],
+      bebidas: [],
+      frutas: []
+    };
 
-    this.checkListItems = this.menus.checkList["utensilios"] ?? []
-    this.bebidasListItems = this.menus.checkList["bebidas"] ?? []
-    this.frutasListItems = this.menus.checkList["frutas"] ?? []
-   
 
-    
 
+  generateChecklist() {
+    this.checkListItems = this.menus.checkList["utensilios"] ?? [];
+    this.bebidasListItems = this.menus.checkList["bebidas"] ?? [];
+    this.frutasListItems = this.menus.checkList["frutas"] ?? [];
+
+    this.quantidades.utensilios = this.checkListItems.map(() => 1);
+    this.quantidades.bebidas = this.bebidasListItems.map(() => 1);
+    this.quantidades.frutas = this.frutasListItems.map(() => 1);
   }
+
+  toggleEditar() {
+    this.isEditing = !this.isEditing;
+    if (!this.isEditing) {
+      console.log("Checklist final:");
+      console.log("Utensílios:", this.checkListItems, this.quantidades.utensilios);
+      console.log("Frutas:", this.frutasListItems, this.quantidades.frutas);
+      console.log("Bebidas:", this.bebidasListItems, this.quantidades.bebidas);
+    }
+  }
+
+  newChecklistItem = ''
+  addChecklist() {
+    const item = this.newChecklistItem.trim();
+    if (item && !this.selectedMenuItems.includes(item)) {
+      this.checkListItems.push(item);
+      this.newItem = '';
+    }
+  }
+   removeChecklistItem(index: number) {
+    this.checkListItems.splice(index, 1);
+  }
+
+  saveChecklistChanges() {
+    // Salve as mudanças feitas durante a edição
+    this.isEditing = false;
+    console.log("Novo checklist salvo:", this.checkListItems, this.frutasListItems, this.bebidasListItems);
+  }
+
 
 
 
