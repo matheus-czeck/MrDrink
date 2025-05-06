@@ -119,14 +119,15 @@ export class CheckListComponent implements OnInit {
   quantidadeItems: number = 0
 
   editando = false
+
   quantidades: {
-    utensilios: number[];
-    bebidas: number[];
-    frutas: number[];
+    utensilios: number;
+    bebidas: number;
+    frutas: number;
   } = {
-      utensilios: [],
-      bebidas: [],
-      frutas: []
+      utensilios: 1,
+      bebidas: 1,
+      frutas: 1
     };
 
 
@@ -135,10 +136,6 @@ export class CheckListComponent implements OnInit {
     this.checkListItems = this.menus.checkList["utensilios"] ?? [];
     this.bebidasListItems = this.menus.checkList["bebidas"] ?? [];
     this.frutasListItems = this.menus.checkList["frutas"] ?? [];
-
-    this.quantidades.utensilios = this.checkListItems.map(() => 1);
-    this.quantidades.bebidas = this.bebidasListItems.map(() => 1);
-    this.quantidades.frutas = this.frutasListItems.map(() => 1);
   }
 
   toggleEditar() {
@@ -151,20 +148,49 @@ export class CheckListComponent implements OnInit {
     }
   }
 
-  newChecklistItem = ''
+  newUtensilItem = ''
+  newFruitsItem = ''
+  newDrinkstItem = ''
+
   addChecklist() {
-    const item = this.newChecklistItem.trim();
-    if (item && !this.selectedMenuItems.includes(item)) {
-      this.checkListItems.push(item);
-      this.newItem = '';
+    if (this.newUtensilItem.trim()) {
+      const item = this.newUtensilItem.trim();
+      if (!this.checkListItems.includes(item)) {
+        this.checkListItems.push(item);
+        this.newUtensilItem = '';
+      }
+    }
+
+    if (this.newFruitsItem.trim()) {
+      const item = this.newFruitsItem.trim();
+      if (!this.frutasListItems.includes(item)) {
+        this.frutasListItems.push(item);
+        this.newFruitsItem = '';
+      }
+    }
+
+    if (this.newDrinkstItem.trim()) {
+      const item = this.newDrinkstItem.trim();
+      if (!this.bebidasListItems.includes(item)) {
+        this.bebidasListItems.push(item);
+        this.newDrinkstItem = '';
+      }
     }
   }
-   removeChecklistItem(index: number) {
-    this.checkListItems.splice(index, 1);
-  }
+
+  removeUtensilItem(index: number) {
+  this.checkListItems.splice(index, 1);
+}
+
+removeFruitItem(index: number) {
+  this.frutasListItems.splice(index, 1);
+}
+
+removeDrinkItem(index: number) {
+  this.bebidasListItems.splice(index, 1);
+}
 
   saveChecklistChanges() {
-    // Salve as mudanças feitas durante a edição
     this.isEditing = false;
     console.log("Novo checklist salvo:", this.checkListItems, this.frutasListItems, this.bebidasListItems);
   }

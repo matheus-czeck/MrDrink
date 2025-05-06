@@ -1,61 +1,18 @@
-.content{
+.content {
     display: flex;
     flex-wrap: wrap;
     gap: 1rem;
+
     div {
-        flex:1 1 300px;
+        flex: 1 1 300px;
         max-width: 300px;
     }
 
-   
-}
-.checklist-container{
-    background-color: rgba(46, 46, 46, 0.5);
-    border-radius: 10px;
-    margin: 1.2rem;
-    padding: .8rem;
-    text-align: center;
-
-    ul {
-        display: flex;
-        flex-direction: column !important;
-        border: 1px solid white;
-        border-radius: 10px;
-        align-items: center;
-        padding: 0 !important;
-        margin-bottom: 1rem;
-
-        input {
-            margin: 1rem 0 ;
-            border: none;
-            padding: .5rem;
-            border-radius: 5px;
-
-        }
-        
-    }
-
-    li {
-        width: 100%;
-        text-align: center;
-        list-style-type: none;
-        color: white;
-        padding: 0 .8;
-        font-weight: 600; 
-        border-bottom: 1px solid white;
-        
-    }
-
-    h4{
-        color: white;
-        text-align: center;
-
-
-    }
 
 }
 
-.choose-menu{
+
+.choose-menu {
     background-color: rgba(46, 46, 46, 0.5);
     border-radius: 10px;
     margin: 1.2rem;
@@ -77,6 +34,7 @@
 
 .confirm-menu {
     max-height: 100px;
+
     h3 {
         color: white;
         text-align: center;
@@ -166,3 +124,7 @@ input::placeholder {
 }
 
 
+.checklist-container{
+
+    
+}
