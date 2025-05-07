@@ -1,18 +1,20 @@
 .content {
     display: flex;
+    align-items: flex-start;
     flex-wrap: wrap;
     gap: 1rem;
+}
 
-    div {
-        flex: 1 1 300px;
-        max-width: 300px;
-    }
-
-
+.content>div {
+    max-width: 320px;
+    width: 100%;
 }
 
 
 .choose-menu {
+    flex: 0 1 auto;
+    max-width: 320px;
+    width: 100%;
     background-color: rgba(46, 46, 46, 0.5);
     border-radius: 10px;
     margin: 1.2rem;
@@ -75,15 +77,29 @@ input {
 
 }
 
+.newItemMenu input {
+    margin-right: .3rem !important;
+
+}
+
 input::placeholder {
     color: white !important;
 }
 
-.btn {
+
+.btn-menu {
     display: flex;
-    justify-content: space-between;
+    margin-top: 2rem;
+    justify-content: space-around;
+}
+
+.btn-menu {
 
     button {
+        display: flex;
+        height: 30px;
+        justify-content: center;
+        align-items: center;
         background-color: transparent;
     }
 
@@ -96,7 +112,8 @@ input::placeholder {
     background-color: black;
 
     h3 {
-        color: white;
+        text-align: center;
+        color: white;   
         text-transform: uppercase;
         margin-bottom: .8rem;
 
@@ -124,7 +141,56 @@ input::placeholder {
 }
 
 
-.checklist-container{
+.checklist {
+    background-color: rgba(46, 46, 46, 0.5);
+    border: 1px solid white;
+    border-radius: 10px;
+    text-align: center;
+    box-sizing: border-box;
+
+    div {}
+
+    ul {
+        padding: 0 !important;
+    }
+
+    li {
+        display: flex;
+        width: 100%;
+        list-style-type: none;
+        border: 1px solid white;
+
+    }
+
+    h4,
+    li,
+    input {
+        color: white;
+        padding: .3rem .3rem;
+    }
+
+    input,
+    button {
+        border: none;
+        border-radius: 10px;
+        margin: .3rem;
+
+
+    }
+
+    .addButton {
+        margin-bottom: 1rem;
+
+    }
 
     
+
+
 }
+
+input:focus {
+        background-color: #414141;
+        color: white;
+        outline: none;
+        box-shadow: none;
+    }

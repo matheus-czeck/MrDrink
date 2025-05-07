@@ -38,84 +38,77 @@
           </ul>
         </div>
 
-        <div *ngIf="isEditing" class="mt-2">
+        <div *ngIf="isEditing" class="mt-2 newItemMenu">
           <input [(ngModel)]="newItem" placeholder="Novo item" class="form-control d-inline-block w-auto me-2" />
           <button class="btn btn-success" (click)="addItem()">Adicionar</button>
         </div>
 
         <div class="btn-menu mt-3">
-          <div class="btn">
-            <button class="btn btn-primary" type="button" (click)="isEditing = !isEditing" [disabled]="!selectedCouple">
-              {{ isEditing ? 'Cancelar Edição' : 'Editar' }}
-            </button>
-            <button *ngIf="isEditing" class="btn btn-success" type="button" (click)="saveMenuChanges()">
-              Salvar Alterações
-            </button>
-          </div>
+          <button class="btn btn-primary" type="button" (click)="isEditing = !isEditing" [disabled]="!selectedCouple">
+            {{ isEditing ? 'Cancelar ' : 'Editar' }}
+          </button>
+          <button *ngIf="isEditing" class="btn btn-success" type="button" (click)="saveMenuChanges()">
+            Salvar
+          </button>
         </div>
       </div>
 
 
     </div>
 
-    <div class="checklist-container">
-      <div class="checklist">
-        <div class="utensils">
-          <h4>Utensílios</h4>
-          <ul>
-            <li *ngFor="let item of checkListItems; let i = index">
-              <div>
-                <span *ngIf="!isEditing">{{ item }} - {{quantidades.utensilios}}</span>
-                <input *ngIf="isEditing" [(ngModel)]="checkListItems[i]" />
-                <button *ngIf="isEditing" type="button" class="btn btn-danger btn-sm" (click)="removeUtensilItem(i)">
-                  Remover
-                </button>
-              </div>
-            </li>
-          </ul>
-          <div *ngIf="isEditing" class="mt-2">
-            <input [(ngModel)]="newUtensilItem" placeholder="Novo item"
-              class="form-control d-inline-block w-auto me-2" />
-            <button class="btn btn-success" (click)="addChecklist()">Adicionar</button>
-          </div>
-        </div>
 
-        <div class="fruits">
-          <h4>Frutas</h4>
-          <ul>
-            <li *ngFor="let item of frutasListItems; let i = index">
-              <span *ngIf="!isEditing">{{ item }} - {{quantidades.frutas}}</span>
-              <input *ngIf="isEditing" [(ngModel)]="frutasListItems[i]" />
-              <button *ngIf="isEditing" type="button" class="btn btn-danger btn-sm" (click)="removeFruitItem(i)">
-                Remover
-              </button>
-            </li>
-          </ul>
-          <div *ngIf="isEditing" class="mt-2">
-            <input [(ngModel)]="newFruitsItem" placeholder="Novo item"
-              class="form-control d-inline-block w-auto me-2" />
-            <button class="btn btn-success" (click)="addChecklist()">Adicionar</button>
-          </div>
-        </div>
-
-        <div class="drinks">
-          <h4>Bebidas</h4>
-          <ul>
-            <li *ngFor="let item of bebidasListItems; let i = index">
-              <span *ngIf="!isEditing">{{ item }} - {{quantidades.bebidas}}</span>
-              <input *ngIf="isEditing" [(ngModel)]="bebidasListItems[i]" />
-              <button *ngIf="isEditing" type="button" class="btn btn-danger btn-sm" (click)="removeDrinkItem(i)">
-                Remover
-              </button>
-            </li>
-          </ul>
-          <div *ngIf="isEditing" class="mt-2">
-            <input [(ngModel)]="newDrinkstItem" placeholder="Novo item"
-              class="form-control d-inline-block w-auto me-2" />
-            <button class="btn btn-success" (click)="addChecklist()">Adicionar</button>
-          </div>
+    <div class="checklist">
+      <div class="utensils">
+        <h4>Utensílios</h4>
+        <ul>
+          <li *ngFor="let item of checkListItems; let i = index">
+            <span *ngIf="!isEditing">{{ item }} - {{quantidades.utensilios}}</span>
+            <input *ngIf="isEditing" [(ngModel)]="checkListItems[i]" />
+            <button *ngIf="isEditing" type="button" class="btn btn-danger btn-sm" (click)="removeUtensilItem(i)">
+              Remover
+            </button>
+          </li>
+        </ul>
+        <div *ngIf="isEditing" class="mt-2 addButton">
+          <input [(ngModel)]="newUtensilItem" placeholder="Novo item" class="form-control d-inline-block w-auto me-2" />
+          <button class="btn btn-success" (click)="addChecklist()">Adicionar</button>
         </div>
       </div>
+
+      <div class="fruits">
+        <h4>Frutas</h4>
+        <ul>
+          <li *ngFor="let item of frutasListItems; let i = index">
+            <span *ngIf="!isEditing">{{ item }} - {{quantidades.frutas}}</span>
+            <input *ngIf="isEditing" [(ngModel)]="frutasListItems[i]" />
+            <button *ngIf="isEditing" type="button" class="btn btn-danger btn-sm" (click)="removeFruitItem(i)">
+              Remover
+            </button>
+          </li>
+        </ul>
+        <div *ngIf="isEditing" class="mt-2">
+          <input [(ngModel)]="newFruitsItem" placeholder="Novo item" class="form-control d-inline-block w-auto me-2" />
+          <button class="btn btn-success" (click)="addChecklist()">Adicionar</button>
+        </div>
+      </div>
+
+      <div class="drinks">
+        <h4>Bebidas</h4>
+        <ul>
+          <li *ngFor="let item of bebidasListItems; let i = index">
+            <span *ngIf="!isEditing">{{ item }} - {{quantidades.bebidas}}</span>
+            <input *ngIf="isEditing" [(ngModel)]="bebidasListItems[i]" />
+            <button *ngIf="isEditing" type="button" class="btn btn-danger btn-sm" (click)="removeDrinkItem(i)">
+              Remover
+            </button>
+          </li>
+        </ul>
+        <div *ngIf="isEditing" class="mt-2">
+          <input [(ngModel)]="newDrinkstItem" placeholder="Novo item" class="form-control d-inline-block w-auto me-2" />
+          <button class="btn btn-success" (click)="addChecklist()">Adicionar</button>
+        </div>
+      </div>
+
 
 
     </div>
